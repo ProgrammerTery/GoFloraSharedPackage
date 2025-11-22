@@ -33,8 +33,8 @@ public struct PopularLocation: Content, Codable {
 }
 
 /// Victoria Falls popular locations seed data
-struct VictoriaFallsLocations {
-    static let all: [PopularLocation] = [
+public struct VictoriaFallsLocations {
+   public static let all: [PopularLocation] = [
         // Airports
         PopularLocation(
             id: "vfa-airport",
@@ -255,12 +255,12 @@ struct VictoriaFallsLocations {
     ]
     
     /// Get locations by category
-    static func byCategory(_ category: String) -> [PopularLocation] {
+   public static func byCategory(_ category: String) -> [PopularLocation] {
         return all.filter { $0.category == category }
     }
     
     /// Search locations by name or address
-    static func search(_ query: String) -> [PopularLocation] {
+   public static func search(_ query: String) -> [PopularLocation] {
         let lowercaseQuery = query.lowercased()
         return all.filter { location in
             location.name.lowercased().contains(lowercaseQuery) ||
@@ -269,7 +269,7 @@ struct VictoriaFallsLocations {
     }
     
     /// Get most popular locations
-    static func popular(limit: Int = 10) -> [PopularLocation] {
+  public  static func popular(limit: Int = 10) -> [PopularLocation] {
         return Array(all.sorted { $0.usageCount > $1.usageCount }.prefix(limit))
     }
 }
