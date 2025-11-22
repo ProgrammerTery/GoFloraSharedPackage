@@ -7,6 +7,18 @@
 
 import Vapor
 
+public struct ClientDTO: Content, Validatable {
+    public let name: String
+    public let email: String
+    public let password: String
+    public let confirmPassword: String
+
+    public static func validations(_ validations: inout Validations) {
+        validations.add("name", as: String.self, is: !.empty)
+        validations.add("email", as: String.self, is: .email)
+        validations.add("password", as: String.self, is: .count(8...))
+    }
+}
 public struct ClientTokenDTO: Content {
     public let id: UUID?
     public let tokenValue: String

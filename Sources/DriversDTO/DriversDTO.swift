@@ -8,7 +8,21 @@
 import Vapor
 import Foundation
 
-public struct DriverDTO: Content {
+
+public struct DriverDTO: Content, Validatable {
+    public let name: String
+    public let email: String
+    public let password: String
+    public let confirmPassword: String
+
+    public static func validations(_ validations: inout Validations) {
+        validations.add("name", as: String.self, is: !.empty)
+        validations.add("email", as: String.self, is: .email)
+        validations.add("password", as: String.self, is: .count(8...))
+    }
+}
+
+public struct DriverProfileDTO: Content {
     public let driverID: String
     public let driverName: String
     public let driverPhone: String
@@ -44,4 +58,11 @@ public struct DriverTripRequestPivotDTO: Content {
         self.bidAmount = bidAmount
         self.isApproved = isApproved
     }
+}
+
+public struct DriverDTOResponseModel: Content {
+    let name: String
+    let email: String
+    let token: String
+
 }
