@@ -15,7 +15,7 @@ import TripDTO
 public struct TransportServiceDTO: Content {
     public let transportServiceType: String
     public let id: UUID?
-    
+
     public init(transportServiceType: String, id: UUID?) {
         self.transportServiceType = transportServiceType
         self.id = id
@@ -27,7 +27,7 @@ public struct TransportServiceDTO: Content {
 public struct StatusCount: Content {
     public let status: String?
     public let count: Int
-    
+
     public init(status: String?, count: Int) {
         self.status = status
         self.count = count
@@ -39,7 +39,7 @@ public struct DashboardStats: Content {
     public let pendingTrips: Int
     public let completedTrips: Int
     public let totalSpent: Double
-    
+
     public init(totalTrips: Int, pendingTrips: Int, completedTrips: Int, totalSpent: Double) {
         self.totalTrips = totalTrips
         self.pendingTrips = pendingTrips
@@ -52,7 +52,7 @@ public struct TripStats: Content {
     public let total: Int
     public let pending: Int
     public let completed: Int
-    
+
     public init(total: Int, pending: Int, completed: Int) {
         self.total = total
         self.pending = pending
@@ -69,7 +69,7 @@ public struct PaginationContext: Content {
     public let hasNext: Bool
     public let previous: Int
     public let next: Int
-    
+
     public init(current: Int, total: Int, hasPrevious: Bool, hasNext: Bool, previous: Int, next: Int) {
         self.current = current
         self.total = total
@@ -86,7 +86,7 @@ public struct Notification: Content {
     public let id: UUID
     public let message: String
     public let createdAt: Date
-    
+
     public init(id: UUID, message: String, createdAt: Date) {
         self.id = id
         self.message = message
@@ -94,59 +94,115 @@ public struct Notification: Content {
     }
 }
 
-// MARK: - 
+// MARK: -
 public struct IndexContext: Content {
-    let title: String
-    let user: ClientDTOResponseModel?
+    public let title: String
+    public let user: ClientDTOResponseModel?
+
+    public init(title: String, user: ClientDTOResponseModel?) {
+        self.title = title
+        self.user = user
+    }
 }
 
 public struct LoginContext: Content {
-    let title: String
-    let error: String?
-    let email: String?
+    public let title: String
+    public let error: String?
+    public let email: String?
+
+    public init(title: String, error: String?, email: String?) {
+        self.title = title
+        self.error = error
+        self.email = email
+    }
 }
 
 public struct RegisterContext: Content {
-    let title: String
-    let error: String?
-    let success: String?
+    public let title: String
+    public let error: String?
+    public let success: String?
+
+    public init(title: String, error: String?, success: String?) {
+        self.title = title
+        self.error = error
+        self.success = success
+    }
 }
 
 public struct DashboardContext: Content {
-    let title: String
-    let user: ClientDTOResponseModel
-    let stats: DashboardStats
-    let recentTrips: [TripRequestDTO]
-    let notifications: [Notification]
+    public let title: String
+    public let user: ClientDTOResponseModel
+    public let stats: DashboardStats
+    public let recentTrips: [TripRequestDTO]
+    public let notifications: [Notification]
+
+    public init(title: String, user: ClientDTOResponseModel, stats: DashboardStats, recentTrips: [TripRequestDTO], notifications: [Notification]) {
+        self.title = title
+        self.user = user
+        self.stats = stats
+        self.recentTrips = recentTrips
+        self.notifications = notifications
+    }
 }
 
 public struct TripsContext: Content {
-    let title: String
-    let user: ClientDTOResponseModel
-    let trips: [TripRequestDTO]
-    let stats: TripStats
-    let status: String?
-    let pagination: PaginationContext
+    public let title: String
+    public let user: ClientDTOResponseModel
+    public let trips: [TripRequestDTO]
+    public let stats: TripStats
+    public let status: String?
+    public let pagination: PaginationContext
+
+    public init(title: String, user: ClientDTOResponseModel, trips: [TripRequestDTO], stats: TripStats, status: String?, pagination: PaginationContext) {
+        self.title = title
+        self.user = user
+        self.trips = trips
+        self.stats = stats
+        self.status = status
+        self.pagination = pagination
+    }
 }
 
 public struct NewTripContext: Content {
-    let title: String
-    let user: ClientDTOResponseModel
-    let serviceTypes: [TransportServiceDTO]
-    let error: String?
+    public let title: String
+    public let user: ClientDTOResponseModel
+    public let serviceTypes: [TransportServiceDTO]
+    public let error: String?
+
+    public init(title: String, user: ClientDTOResponseModel, serviceTypes: [TransportServiceDTO], error: String?) {
+        self.title = title
+        self.user = user
+        self.serviceTypes = serviceTypes
+        self.error = error
+    }
 }
 
 public struct TripDetailContext: Content {
-    let title: String
-    let user: ClientDTOResponseModel
-    let trip: TripRequestDTO
-    let canCancel: Bool
+    public let title: String
+    public let user: ClientDTOResponseModel
+    public let trip: TripRequestDTO
+    public let canCancel: Bool
+
+    public init(title: String, user: ClientDTOResponseModel, trip: TripRequestDTO, canCancel: Bool) {
+        self.title = title
+        self.user = user
+        self.trip = trip
+        self.canCancel = canCancel
+    }
 }
 
 public struct TripCancellationResponse: Content {
-    let success: Bool
-    let message: String
-    let cancellationFee: Double?
-    let refundAmount: Double?
-    let cancellationId: UUID?
+    public let success: Bool
+    public let message: String
+    public let cancellationFee: Double?
+    public let refundAmount: Double?
+    public let cancellationId: UUID?
+
+    public init(success: Bool, message: String, cancellationFee: Double?, refundAmount: Double?, cancellationId: UUID?) {
+        self.success = success
+        self.message = message
+        self.cancellationFee = cancellationFee
+        self.refundAmount = refundAmount
+        self.cancellationId = cancellationId
+    }
 }
