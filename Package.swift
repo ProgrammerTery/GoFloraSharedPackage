@@ -51,7 +51,11 @@ let package = Package(
         .target(
             name: "SharedModels",
             dependencies: [
-                .product(name: "Vapor", package: "vapor")
+                .product(name: "Vapor", package: "vapor"),
+                "ClientDTO",
+                "DriversDTO",
+                "PaymentDTO",
+                "TripDTO"
             ]
         ),
         .testTarget(

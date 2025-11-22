@@ -40,5 +40,43 @@
 			<integer>6</integer>
 		</dict>
 	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>ClientDTO</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DriversDTO</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>GoFloraSharedPackage</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>GoFloraSharedPackageTests</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>PaymentDTO</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>SharedModels</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>TripDTO</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
 </dict>
 </plist>
