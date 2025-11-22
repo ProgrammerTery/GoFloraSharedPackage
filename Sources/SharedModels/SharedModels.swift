@@ -7,6 +7,8 @@
 
 import Vapor
 import Foundation
+import ClientDTO
+import TripDTO
 
 // MARK: - Transport Service
 
@@ -90,4 +92,61 @@ public struct Notification: Content {
         self.message = message
         self.createdAt = createdAt
     }
+}
+
+// MARK: - 
+struct IndexContext: Content {
+    let title: String
+    let user: ClientDTOResponseModel?
+}
+
+struct LoginContext: Content {
+    let title: String
+    let error: String?
+    let email: String?
+}
+
+struct RegisterContext: Content {
+    let title: String
+    let error: String?
+    let success: String?
+}
+
+struct DashboardContext: Content {
+    let title: String
+    let user: ClientDTOResponseModel
+    let stats: DashboardStats
+    let recentTrips: [TripRequestDTO]
+    let notifications: [Notification]
+}
+
+struct TripsContext: Content {
+    let title: String
+    let user: ClientDTOResponseModel
+    let trips: [TripRequestDTO]
+    let stats: TripStats
+    let status: String?
+    let pagination: PaginationContext
+}
+
+struct NewTripContext: Content {
+    let title: String
+    let user: ClientDTOResponseModel
+    let serviceTypes: [TransportServiceDTO]
+    let error: String?
+}
+
+struct TripDetailContext: Content {
+    let title: String
+    let user: ClientDTOResponseModel
+    let trip: TripRequestDTO
+    let canCancel: Bool
+}
+
+struct TripCancellationResponse: Content {
+    let success: Bool
+    let message: String
+    let cancellationFee: Double?
+    let refundAmount: Double?
+    let cancellationId: UUID?
 }
