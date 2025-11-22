@@ -15,6 +15,13 @@ public struct DriverDTO: Content, Validatable {
     public let password: String
     public let confirmPassword: String
 
+    public init(name: String, email: String, password: String, confirmPassword: String) {
+        self.name = name
+        self.email = email
+        self.password = password
+        self.confirmPassword = confirmPassword
+    }
+
     public static func validations(_ validations: inout Validations) {
         validations.add("name", as: String.self, is: !.empty)
         validations.add("email", as: String.self, is: .email)
@@ -61,8 +68,14 @@ public struct DriverTripRequestPivotDTO: Content {
 }
 
 public struct DriverDTOResponseModel: Content {
-    let name: String
-    let email: String
-    let token: String
+   public let name: String
+   public let email: String
+   public let token: String
+
+    public init(name: String, email: String, token: String) {
+        self.name = name
+        self.email = email
+        self.token = token
+    }
 
 }
