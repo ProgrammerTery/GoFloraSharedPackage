@@ -4,7 +4,7 @@
 //
 //  Created by Terence Changadeya on 22/11/2025.
 //
-
+import Vapor
 
 struct VehicleDTO: Content {
     let id : UUID?
