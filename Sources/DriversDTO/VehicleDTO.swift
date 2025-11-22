@@ -6,7 +6,7 @@
 //
 import Vapor
 
-struct VehicleDTO: Content {
+public struct VehicleDTO: Content {
     public let id : UUID?
     public let registrationNumber: String
     public let licensePlateNumber: String
