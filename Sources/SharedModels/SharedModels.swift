@@ -95,24 +95,24 @@ public struct Notification: Content {
 }
 
 // MARK: - 
-struct IndexContext: Content {
+public struct IndexContext: Content {
     let title: String
     let user: ClientDTOResponseModel?
 }
 
-struct LoginContext: Content {
+public struct LoginContext: Content {
     let title: String
     let error: String?
     let email: String?
 }
 
-struct RegisterContext: Content {
+public struct RegisterContext: Content {
     let title: String
     let error: String?
     let success: String?
 }
 
-struct DashboardContext: Content {
+public struct DashboardContext: Content {
     let title: String
     let user: ClientDTOResponseModel
     let stats: DashboardStats
@@ -120,7 +120,7 @@ struct DashboardContext: Content {
     let notifications: [Notification]
 }
 
-struct TripsContext: Content {
+public struct TripsContext: Content {
     let title: String
     let user: ClientDTOResponseModel
     let trips: [TripRequestDTO]
@@ -129,21 +129,21 @@ struct TripsContext: Content {
     let pagination: PaginationContext
 }
 
-struct NewTripContext: Content {
+public struct NewTripContext: Content {
     let title: String
     let user: ClientDTOResponseModel
     let serviceTypes: [TransportServiceDTO]
     let error: String?
 }
 
-struct TripDetailContext: Content {
+public struct TripDetailContext: Content {
     let title: String
     let user: ClientDTOResponseModel
     let trip: TripRequestDTO
     let canCancel: Bool
 }
 
-struct TripCancellationResponse: Content {
+public struct TripCancellationResponse: Content {
     let success: Bool
     let message: String
     let cancellationFee: Double?
