@@ -88,24 +88,3 @@ public struct TripCancellationDTO: Content {
     }
 }
 
-public struct PendingReviewTripDTO: Content {
-    public let tripID: UUID
-    public let clientName: String
-    public let pickupLocation: String
-    public let dropoffLocation: String
-    public let pickupTime: Date
-    public let estimatedDistance: Double?
-    public let numberOfPassengers: Int
-    public let status: String
-    
-    public init(tripID: UUID, clientName: String, pickupLocation: String, dropoffLocation: String, pickupTime: Date, estimatedDistance: Double?, numberOfPassengers: Int, status: String) {
-        self.tripID = tripID
-        self.clientName = clientName
-        self.pickupLocation = pickupLocation
-        self.dropoffLocation = dropoffLocation
-        self.pickupTime = pickupTime
-        self.estimatedDistance = estimatedDistance
-        self.numberOfPassengers = numberOfPassengers
-        self.status = status
-    }
-}
