@@ -15,9 +15,9 @@ public struct DriverProfileDTO: Content {
     public let driverAddress: String
     public let registrationDate: Date
     public let driverLicense: String
-    public let vehicle_id: UUID
+    public let vehicle_id: UUID?
 
-    public init(driverID: String, driverName: String, driverPhone: String, driverEmail: String, driverAddress: String, registrationDate: Date, driverLicense: String, vehicle_id: UUID) {
+    public init(driverID: String, driverName: String, driverPhone: String, driverEmail: String, driverAddress: String, registrationDate: Date, driverLicense: String, vehicle_id: UUID? = nil ) {
         self.driverID = driverID
         self.driverName = driverName
         self.driverPhone = driverPhone
