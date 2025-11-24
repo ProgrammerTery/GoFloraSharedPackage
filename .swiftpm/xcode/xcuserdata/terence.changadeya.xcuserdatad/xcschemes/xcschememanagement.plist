@@ -67,6 +67,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>LocationService</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>PaymentDTO</key>
 		<dict>
 			<key>primary</key>

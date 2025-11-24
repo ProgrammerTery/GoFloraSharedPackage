@@ -29,27 +29,6 @@ public struct DriverDTO: Content, Validatable {
     }
 }
 
-public struct DriverProfileDTO: Content {
-    public let driverID: String
-    public let driverName: String
-    public let driverPhone: String
-    public let driverEmail: String
-    public let driverAddress: String
-    public let registrationDate: Date
-    public let driverLicense: String
-    public let vehicle_id: UUID
-    
-    public init(driverID: String, driverName: String, driverPhone: String, driverEmail: String, driverAddress: String, registrationDate: Date, driverLicense: String, vehicle_id: UUID) {
-        self.driverID = driverID
-        self.driverName = driverName
-        self.driverPhone = driverPhone
-        self.driverEmail = driverEmail
-        self.driverAddress = driverAddress
-        self.registrationDate = registrationDate
-        self.driverLicense = driverLicense
-        self.vehicle_id = vehicle_id
-    }
-}
 
 public struct DriverTripRequestPivotDTO: Content {
     public let id: UUID?
