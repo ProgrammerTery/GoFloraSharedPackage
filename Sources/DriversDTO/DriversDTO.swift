@@ -50,11 +50,13 @@ public struct DriverDTOResponseModel: Content {
    public let name: String
    public let email: String
    public let token: String
+   public let driverID: UUID
 
-    public init(name: String, email: String, token: String) {
+    public init(name: String, email: String, token: String, driverID: UUID) {
         self.name = name
         self.email = email
         self.token = token
+        self.driverID = driverID
     }
 
 }
