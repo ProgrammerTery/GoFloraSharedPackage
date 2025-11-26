@@ -49,3 +49,112 @@ public struct VehicleDTO: Content {
         self.servicetypeId = servicetypeId
     }
 }
+
+
+// MARK: - Vehicle Registration DTOs
+
+public struct ServiceTypeSelectionContext: Content {
+    public let title: String
+    public let pageType: String
+    public let driverID: String
+    public let driverName: String
+    public let serviceTypes: [ServiceTypeContext]
+    public let errorMessage: String?
+    public init(title: String, pageType: String, driverID: String, driverName: String, serviceTypes: [ServiceTypeContext], errorMessage: String?) {
+        self.title = title
+        self.pageType = pageType
+        self.driverID = driverID
+        self.driverName = driverName
+        self.serviceTypes = serviceTypes
+        self.errorMessage = errorMessage
+    }
+}
+
+public struct ServiceTypeContext: Content {
+    public let id: String
+    public let name: String
+    public let description: String
+    public let baseRate: Double
+    public init(id: String, name: String, description: String, baseRate: Double) {
+        self.id = id
+        self.name = name
+        self.description = description
+        self.baseRate = baseRate
+    }
+}
+
+public struct ServiceTypeSelectionFormData: Content {
+    public  let serviceTypeID: String
+
+    public init(serviceTypeID: String) {
+        self.serviceTypeID = serviceTypeID
+    }
+}
+
+public struct VehicleRegistrationPageContext: Content {
+    public   let title: String
+    public   let pageType: String
+    public   let driverID: String
+    public   let driverName: String
+    public  let selectedServiceType: ServiceTypeContext?
+    public   let errorMessage: String?
+
+    public init(title: String, pageType: String, driverID: String, driverName: String, selectedServiceType: ServiceTypeContext?, errorMessage: String?) {
+        self.title = title
+        self.pageType = pageType
+        self.driverID = driverID
+        self.driverName = driverName
+        self.selectedServiceType = selectedServiceType
+        self.errorMessage = errorMessage
+    }
+}
+
+public struct VehicleRegistrationFormData: Content {
+    public  let make: String
+    public  let model: String
+    public  let year: Int
+    public  let licensePlate: String
+    public  let color: String
+    public  let serviceTypeID: String
+
+    public init(make: String, model: String, year: Int, licensePlate: String, color: String, serviceTypeID: String) {
+        self.make = make
+        self.model = model
+        self.year = year
+        self.licensePlate = licensePlate
+        self.color = color
+        self.serviceTypeID = serviceTypeID
+    }
+}
+
+public struct VehicleConfirmationContext: Content {
+    public let title: String
+    public let pageType: String
+    public let driverName: String
+    public let vehicle: VehicleContext
+    public let serviceType: ServiceTypeContext
+
+    public init(title: String, pageType: String, driverName: String, vehicle: VehicleContext, serviceType: ServiceTypeContext) {
+        self.title = title
+        self.pageType = pageType
+        self.driverName = driverName
+        self.vehicle = vehicle
+        self.serviceType = serviceType
+    }
+}
+
+public struct VehicleContext: Content {
+    public  let make: String
+    public let model: String
+    public let year: Int
+    public let licensePlate: String
+    public let color: String
+
+    public init(make: String, model: String, year: Int, licensePlate: String, color: String) {
+        self.make = make
+        self.model = model
+        self.year = year
+        self.licensePlate = licensePlate
+        self.color = color
+    }
+}

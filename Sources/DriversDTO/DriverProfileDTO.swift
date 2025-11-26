@@ -49,3 +49,40 @@ public struct UpdateDriverProfileRequest: Content {
     }
 }
 
+public struct EditProfilePageContext: Content {
+    public let title: String
+    public let pageType: String
+    public let driver: DriverProfileDTO
+    public let errorMessage: String?
+
+    public init(title: String, pageType: String, driver: DriverProfileDTO, errorMessage: String?) {
+        self.title = title
+        self.pageType = pageType
+        self.driver = driver
+        self.errorMessage = errorMessage
+    }
+}
+
+public struct ProfileUpdateFormData: Content {
+    public let driverName: String
+    public let driverPhone: String
+    public let driverEmail: String
+    public let driverAddress: String
+
+    public init(driverName: String, driverPhone: String, driverEmail: String, driverAddress: String) {
+        self.driverName = driverName
+        self.driverPhone = driverPhone
+        self.driverEmail = driverEmail
+        self.driverAddress = driverAddress
+    }
+}
+
+struct ProfilePageContext: Content {
+    let title: String
+    let pageType: String
+    let driver: DriverProfileDTO
+    let stats: DriversDriverStatsContext
+    let successMessage: String?
+    let errorMessage: String?
+    let initial: String?
+}

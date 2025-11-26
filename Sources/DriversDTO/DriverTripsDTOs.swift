@@ -25,17 +25,6 @@ public struct DashboardPageContext: Content {
     }
 }
 
-public struct ProfilePageContext: Content {
-    public let title: String
-    public let pageType: String
-    public let driver: DriverProfileDTO
-
-    public init(title: String, pageType: String, driver: DriverProfileDTO) {
-        self.title = title
-        self.pageType = pageType
-        self.driver = driver
-    }
-}
 
 
 public struct DriverStatsContext: Content {

@@ -206,3 +206,18 @@ public struct TripCancellationResponse: Content {
         self.cancellationId = cancellationId
     }
 }
+
+
+public struct ServiceTypeAPIResponse: Content {
+    public  let id: String
+    public  let name: String
+    public  let description: String
+    public  let baseRate: Double
+
+    public init(id: String, name: String, description: String, baseRate: Double) {
+        self.id = id
+        self.name = name
+        self.description = description
+        self.baseRate = baseRate
+    }
+}

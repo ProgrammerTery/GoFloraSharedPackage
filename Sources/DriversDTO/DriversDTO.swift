@@ -58,3 +58,16 @@ public struct DriverDTOResponseModel: Content {
     }
 
 }
+
+public struct LoginPageContext: Content {
+    public   let title: String
+    public   let pageType: String
+    public   let errorMessage: String?
+    public  let prefillEmail: String?
+    public init(title: String, pageType: String, errorMessage: String?, prefillEmail: String?) {
+        self.title = title
+        self.pageType = pageType
+        self.errorMessage = errorMessage
+        self.prefillEmail = prefillEmail
+    }
+}
