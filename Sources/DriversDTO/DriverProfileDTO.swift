@@ -77,12 +77,22 @@ public struct ProfileUpdateFormData: Content {
     }
 }
 
-struct ProfilePageContext: Content {
-    let title: String
-    let pageType: String
-    let driver: DriverProfileDTO
-    let stats: DriversDriverStatsContext
-    let successMessage: String?
-    let errorMessage: String?
-    let initial: String?
+public struct ProfilePageContext: Content {
+    public let title: String
+    public let pageType: String
+    public let driver: DriverProfileDTO
+    public let stats: DriversDriverStatsContext
+    public let successMessage: String?
+    public let errorMessage: String?
+    public let initial: String?
+
+    public init(title: String, pageType: String, driver: DriverProfileDTO, stats: DriversDriverStatsContext, successMessage: String?, errorMessage: String?, initial: String?) {
+        self.title = title
+        self.pageType = pageType
+        self.driver = driver
+        self.stats = stats
+        self.successMessage = successMessage
+        self.errorMessage = errorMessage
+        self.initial = initial
+    }
 }
