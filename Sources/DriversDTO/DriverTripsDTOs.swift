@@ -66,8 +66,11 @@ public struct TripSummaryContext: Content {
     public let status: String
     public let bidAmount: Double?
     public let scheduledTime: String?
+    public let date: String?
+    public let amount: Double?
 
-    public init(id: String, pickup: String, destination: String, distance: String?, suggestedPrice: Double?, status: String, bidAmount: Double?, scheduledTime: String?) {
+
+    public init(id: String, pickup: String, destination: String, distance: String?, suggestedPrice: Double?, status: String, bidAmount: Double?, scheduledTime: String?, date: String?, amount: Double?) {
         self.id = id
         self.pickup = pickup
         self.destination = destination
@@ -76,6 +79,8 @@ public struct TripSummaryContext: Content {
         self.status = status
         self.bidAmount = bidAmount
         self.scheduledTime = scheduledTime
+        self.date = date
+        self.amount = amount
     }
 }
 
