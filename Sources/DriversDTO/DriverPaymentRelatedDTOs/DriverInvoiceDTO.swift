@@ -15,14 +15,14 @@ public struct CreateDriverInvoiceRequest: Content {
     public let tripId: UUID
     public let method: String
     public let currency: String
-    public let baseFare: Double
+    public let baseFare: Double?
     public let driverServiceFee: Double
     public let platformFee: Double
     public let amount: Double
     public let status: String
     public let paidAt: Date?
 
-    public init(driverCustomFeesId: UUID, tripId: UUID, method: String, currency: String, baseFare: Double, driverServiceFee: Double, platformFee: Double, amount: Double, status: String, paidAt: Date? = nil) {
+    public init(driverCustomFeesId: UUID, tripId: UUID, method: String, currency: String, baseFare: Double? = nil, driverServiceFee: Double, platformFee: Double, amount: Double, status: String, paidAt: Date? = nil) {
         self.driverCustomFeesId = driverCustomFeesId
         self.tripId = tripId
         self.method = method
@@ -74,7 +74,7 @@ public struct DriverInvoiceDTO: Content {
     public let tripId: UUID
     public let method: String
     public let currency: String
-    public let baseFare: Double
+    public let baseFare: Double?
     public let driverServiceFee: Double
     public let platformFee: Double
     public let amount: Double
@@ -91,7 +91,7 @@ public struct DriverInvoiceDTO: Content {
     public let methodType: String?
     public let feeAmount: Double?
 
-    public init(id: UUID?, driverCustomFeesId: UUID, tripId: UUID, method: String, currency: String, baseFare: Double, driverServiceFee: Double, platformFee: Double, amount: Double, status: String, paidAt: Date?, createdAt: Date?, updatedAt: Date?, tripPickupLocation: String?, tripDropoffLocation: String?, tripStatus: String?, driverName: String?, methodType: String?, feeAmount: Double?) {
+    public init(id: UUID?, driverCustomFeesId: UUID, tripId: UUID, method: String, currency: String, baseFare: Double? = nil, driverServiceFee: Double, platformFee: Double, amount: Double, status: String, paidAt: Date?, createdAt: Date?, updatedAt: Date?, tripPickupLocation: String?, tripDropoffLocation: String?, tripStatus: String?, driverName: String?, methodType: String?, feeAmount: Double?) {
         self.id = id
         self.driverCustomFeesId = driverCustomFeesId
         self.tripId = tripId
