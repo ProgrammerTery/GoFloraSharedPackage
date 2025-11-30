@@ -15,10 +15,15 @@ import TripDTO
 public struct TransportServiceDTO: Content {
     public let transportServiceType: String
     public let id: UUID?
+    public let baseFare: Double
+    public let isTransfer: Bool // Indicates if the service is a transfer type or available for regular trips
 
-    public init(transportServiceType: String, id: UUID?) {
+    public init(transportServiceType: String, id: UUID?, baseFare: Double, isTransfer: Bool = false) {
         self.transportServiceType = transportServiceType
         self.id = id
+        self.baseFare = baseFare
+        self.isTransfer = isTransfer
+
     }
 }
 
