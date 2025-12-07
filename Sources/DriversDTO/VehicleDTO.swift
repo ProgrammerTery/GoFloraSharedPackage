@@ -5,6 +5,7 @@
 //  Created by Terence Changadeya on 22/11/2025.
 //
 import Vapor
+import SharedModels
 
 public struct VehicleDTO: Content {
     public let id : UUID?
@@ -58,9 +59,9 @@ public struct ServiceTypeSelectionContext: Content {
     public let pageType: String
     public let driverID: String
     public let driverName: String
-    public let serviceTypes: [ServiceTypeContext]
+    public let serviceTypes: [TransportServiceDTO]
     public let errorMessage: String?
-    public init(title: String, pageType: String, driverID: String, driverName: String, serviceTypes: [ServiceTypeContext], errorMessage: String?) {
+    public init(title: String, pageType: String, driverID: String, driverName: String, serviceTypes: [TransportServiceDTO], errorMessage: String?) {
         self.title = title
         self.pageType = pageType
         self.driverID = driverID
@@ -96,10 +97,10 @@ public struct VehicleRegistrationPageContext: Content {
     public   let pageType: String
     public   let driverID: String
     public   let driverName: String
-    public  let selectedServiceType: ServiceTypeContext?
+    public  let selectedServiceType: TransportServiceDTO?
     public   let errorMessage: String?
 
-    public init(title: String, pageType: String, driverID: String, driverName: String, selectedServiceType: ServiceTypeContext?, errorMessage: String?) {
+    public init(title: String, pageType: String, driverID: String, driverName: String, selectedServiceType: TransportServiceDTO?, errorMessage: String?) {
         self.title = title
         self.pageType = pageType
         self.driverID = driverID
