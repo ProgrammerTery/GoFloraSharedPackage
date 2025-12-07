@@ -66,14 +66,16 @@ public struct DriversDashboardPageContext: Content {
     public  let stats: DriversDriverStatsContext
     public   let recentTrips: [DriversTripSummaryContext]?
     public  let profileIncomplete: Bool?
+    public  let vehicleIncomplete: Bool?
 
-    public init(title: String, pageType: String, driver: DriverProfileDTO, stats: DriversDriverStatsContext, recentTrips: [DriversTripSummaryContext]?, profileIncomplete: Bool?) {
+    public init(title: String, pageType: String, driver: DriverProfileDTO, stats: DriversDriverStatsContext, recentTrips: [DriversTripSummaryContext]?, profileIncomplete: Bool?, vehicleIncomplete: Bool? = nil) {
         self.title = title
         self.pageType = pageType
         self.driver = driver
         self.stats = stats
         self.recentTrips = recentTrips
         self.profileIncomplete = profileIncomplete
+        self.vehicleIncomplete = vehicleIncomplete
     }
 }
 
