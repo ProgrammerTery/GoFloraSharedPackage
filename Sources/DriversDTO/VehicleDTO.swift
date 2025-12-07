@@ -133,9 +133,9 @@ public struct VehicleConfirmationContext: Content {
     public let pageType: String
     public let driverName: String
     public let vehicle: VehicleContext
-    public let serviceType: ServiceTypeContext
+    public let serviceType: TransportServiceDTO
 
-    public init(title: String, pageType: String, driverName: String, vehicle: VehicleContext, serviceType: ServiceTypeContext) {
+    public init(title: String, pageType: String, driverName: String, vehicle: VehicleContext, serviceType: TransportServiceDTO) {
         self.title = title
         self.pageType = pageType
         self.driverName = driverName
