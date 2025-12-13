@@ -10,24 +10,7 @@ import Foundation
 import ClientDTO
 import TripDTO
 
-// MARK: - Transport Service
 
-public struct TransportServiceDTO: Content {
-    public let transportServiceType: String
-    public let id: UUID?
-    public let baseFare: Double?
-    public let description: String?
-    public let isTransfer: Bool // Indicates if the service is a transfer type or available for regular trips
-
-    public init(transportServiceType: String, id: UUID?, baseFare: Double? = nil, description: String? = nil, isTransfer: Bool = false) {
-        self.transportServiceType = transportServiceType
-        self.id = id
-        self.baseFare = baseFare
-        self.description = description
-        self.isTransfer = isTransfer
-
-    }
-}
 
 // MARK: - Status & Statistics
 
@@ -173,10 +156,10 @@ public struct TripsContext: Content {
 public struct NewTripContext: Content {
     public let title: String
     public let user: ClientDTOResponseModel
-    public let serviceTypes: [TransportServiceDTO]
+    public let serviceTypes: [CustomerTransportServiceDTO]
     public let error: String?
 
-    public init(title: String, user: ClientDTOResponseModel, serviceTypes: [TransportServiceDTO], error: String?) {
+    public init(title: String, user: ClientDTOResponseModel, serviceTypes: [CustomerTransportServiceDTO], error: String?) {
         self.title = title
         self.user = user
         self.serviceTypes = serviceTypes

@@ -5,7 +5,6 @@
 //  Created by Terence Changadeya on 22/11/2025.
 //
 import Vapor
-import SharedModels
 
 public struct VehicleDTO: Content {
     public let id : UUID?
