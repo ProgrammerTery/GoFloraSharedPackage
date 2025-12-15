@@ -36,13 +36,15 @@ public struct DriverTripRequestPivotDTO: Content {
     public let tripRequestID: UUID
     public let bidAmount: Double?
     public let isApproved: Bool
-    
-    public init(id: UUID?, driverID: UUID, tripRequestID: UUID, bidAmount: Double? = nil, isApproved: Bool = false) {
+    public let createdAt: Date?
+
+    public init(id: UUID?, driverID: UUID, tripRequestID: UUID, bidAmount: Double? = nil, isApproved: Bool = false, createdAt: Date? = nil) {
         self.id = id
         self.driverID = driverID
         self.tripRequestID = tripRequestID
         self.bidAmount = bidAmount
         self.isApproved = isApproved
+        self.createdAt = createdAt
     }
 }
 
