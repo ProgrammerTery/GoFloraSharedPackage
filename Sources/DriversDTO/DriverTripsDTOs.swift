@@ -152,12 +152,16 @@ public struct BidContext: Content {
         public let pageType: String
         public let bids: [BidSummaryContext]
         public let driver: DriverProfileDTO
+        public let pendingBidsCount: Int
+        public let acceptedBidsCount: Int
 
-        public init(title: String, pageType: String, bids: [BidSummaryContext], driver: DriverProfileDTO) {
+        public init(title: String, pageType: String, bids: [BidSummaryContext], driver: DriverProfileDTO, pendingBidsCount : Int, acceptedBidsCount : Int) {
             self.title = title
             self.pageType = pageType
             self.bids = bids
             self.driver = driver
+            self.pendingBidsCount = pendingBidsCount
+            self.acceptedBidsCount = acceptedBidsCount
         }
 }
 
