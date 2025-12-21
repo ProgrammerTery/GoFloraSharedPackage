@@ -59,6 +59,7 @@ public struct UpdateDriverCustomServiceFeesRequest: Content {
 public struct DriverCustomServiceFeesDTO: Content, Sendable {
     public let id: UUID?
     public let driverID: UUID
+    public let paymentMethodID: UUID
     public let name: String
     public let description: String?
     public let priority: Int
@@ -69,9 +70,10 @@ public struct DriverCustomServiceFeesDTO: Content, Sendable {
     public let createdAt: Date?
     public let updatedAt: Date?
 
-    public init(id: UUID?, driverID: UUID, name: String, description: String?, priority: Int, isActive: Bool, usMethods: [String], zwMethods: [String], serviceFeesSharing: Bool, createdAt: Date?, updatedAt: Date?) {
+    public init(id: UUID?, driverID: UUID, paymentMethodId: UUID, name: String, description: String?, priority: Int, isActive: Bool, usMethods: [String], zwMethods: [String], serviceFeesSharing: Bool, createdAt: Date?, updatedAt: Date?) {
         self.id = id
         self.driverID = driverID
+        self.paymentMethodID = paymentMethodId
         self.name = name
         self.description = description
         self.priority = priority
