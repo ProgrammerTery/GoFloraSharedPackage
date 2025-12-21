@@ -11,36 +11,44 @@ import Foundation
 // MARK: - Request DTOs
 
 public struct CreateDriverCustomServiceFeesRequest: Content {
-    public let driverId: UUID
     public let paymentMethodId: UUID
-    public let methodType: String
-    public let currency: String
-    public let feeAmount: Double
+    public let usMethods: [String]
+    public let zwMethods: [String]
     public let priority: Int?
     public let isActive: Bool?
 
-    public init(driverId: UUID, paymentMethodId: UUID, methodType: String, currency: String, feeAmount: Double, priority: Int? = nil, isActive: Bool? = nil) {
-        self.driverId = driverId
+    public init(
+        paymentMethodId: UUID,
+        usMethods: [String] = [],
+        zwMethods: [String] = [],
+        priority: Int? = nil,
+        isActive: Bool? = nil
+    ) {
         self.paymentMethodId = paymentMethodId
-        self.methodType = methodType
-        self.currency = currency
-        self.feeAmount = feeAmount
+        self.usMethods = usMethods
+        self.zwMethods = zwMethods
         self.priority = priority
         self.isActive = isActive
     }
 }
 
 public struct UpdateDriverCustomServiceFeesRequest: Content {
-    public let methodType: String?
-    public let currency: String?
-    public let feeAmount: Double?
+    public let paymentMethodId: UUID?
+    public let usMethods: [String]?
+    public let zwMethods: [String]?
     public let priority: Int?
     public let isActive: Bool?
 
-    public init(methodType: String? = nil, currency: String? = nil, feeAmount: Double? = nil, priority: Int? = nil, isActive: Bool? = nil) {
-        self.methodType = methodType
-        self.currency = currency
-        self.feeAmount = feeAmount
+    public init(
+        paymentMethodId: UUID? = nil,
+        usMethods: [String]? = nil,
+        zwMethods: [String]? = nil,
+        priority: Int? = nil,
+        isActive: Bool? = nil
+    ) {
+        self.paymentMethodId = paymentMethodId
+        self.usMethods = usMethods
+        self.zwMethods = zwMethods
         self.priority = priority
         self.isActive = isActive
     }
@@ -48,41 +56,31 @@ public struct UpdateDriverCustomServiceFeesRequest: Content {
 
 // MARK: - Response DTOs
 
-public struct DriverCustomServiceFeesDTO: Content {
+public struct DriverCustomServiceFeesDTO: Content, Sendable {
     public let id: UUID?
-    public let driverId: UUID
-    public let paymentMethodId: UUID
-    public let methodType: String
-    public let currency: String
-    public let feeAmount: Double
+    public let driverID: UUID
+    public let name: String
+    public let description: String?
     public let priority: Int
     public let isActive: Bool
+    public let usMethods: [String]
+    public let zwMethods: [String]
+    public let serviceFeesSharing: Bool
     public let createdAt: Date?
     public let updatedAt: Date?
 
-    // Payment method details (when eager loaded)
-    public let paymentMethodName: String?
-    public let paymentMethodDescription: String?
-
-    // Driver details (when eager loaded)
-    public let driverName: String?
-    public let driverEmail: String?
-
-    public init(id: UUID?, driverId: UUID, paymentMethodId: UUID, methodType: String, currency: String, feeAmount: Double, priority: Int, isActive: Bool, createdAt: Date?, updatedAt: Date?, paymentMethodName: String?, paymentMethodDescription: String?, driverName: String?, driverEmail: String?) {
+    public init(id: UUID?, driverID: UUID, name: String, description: String?, priority: Int, isActive: Bool, usMethods: [String], zwMethods: [String], serviceFeesSharing: Bool, createdAt: Date?, updatedAt: Date?) {
         self.id = id
-        self.driverId = driverId
-        self.paymentMethodId = paymentMethodId
-        self.methodType = methodType
-        self.currency = currency
-        self.feeAmount = feeAmount
+        self.driverID = driverID
+        self.name = name
+        self.description = description
         self.priority = priority
         self.isActive = isActive
+        self.usMethods = usMethods
+        self.zwMethods = zwMethods
+        self.serviceFeesSharing = serviceFeesSharing
         self.createdAt = createdAt
         self.updatedAt = updatedAt
-        self.paymentMethodName = paymentMethodName
-        self.paymentMethodDescription = paymentMethodDescription
-        self.driverName = driverName
-        self.driverEmail = driverEmail
     }
 }
 
