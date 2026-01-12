@@ -100,14 +100,12 @@ public struct PayNowPaymentSuccessResponseDTO: Content {
     public let status: String
     public let paynowReference: String
     public let pollUrl: String
-    public let amount: Double
     public let browserurl: String
 
-    public init(status: String, paynowReference: String, pollUrl: String, amount: Double, browserurl: String) {
+    public init(status: String, paynowReference: String, pollUrl: String,browserurl: String) {
         self.status = status
         self.paynowReference = paynowReference
         self.pollUrl = pollUrl
-        self.amount = amount
         self.browserurl = browserurl
     }
 }
