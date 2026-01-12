@@ -96,7 +96,7 @@ public struct PaymentMethodsResponse: Content {
     }
 }
 
-public struct PayNowPaymentSuccessResponse: Content {
+public struct PayNowPaymentSuccessResponseDTO: Content {
     public let status: String
     public let paynowReference: String
     public let pollUrl: String
@@ -112,7 +112,7 @@ public struct PayNowPaymentSuccessResponse: Content {
     }
 }
 
-public struct PaymentStatusResponse: Content {
+public struct PaymentStatusResponseDTO: Content {
     public let isPaid: Bool
     public let amount: Double
     public let status: String
@@ -150,7 +150,7 @@ public struct DriverPayoutResponse: Content {
 
 // MARK: - PayNow Webhook
 
-public struct PayNowWebhookPayload: Content {
+public struct PayNowWebhookPayloadDTO: Content {
     public let reference: String
     public let paynowReference: String
     public let amount: String
