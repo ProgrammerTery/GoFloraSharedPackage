@@ -12,6 +12,7 @@ import Foundation
 
 public struct CreateDriverCustomServiceFeesRequest: Content {
     public let paymentMethodId: UUID
+    public let serviceFeeName: String
     public let usMethods: [String]
     public let zwMethods: [String]
     public let priority: Int?
@@ -19,12 +20,14 @@ public struct CreateDriverCustomServiceFeesRequest: Content {
 
     public init(
         paymentMethodId: UUID,
+        serviceFeeName: String,
         usMethods: [String] = [],
         zwMethods: [String] = [],
         priority: Int? = nil,
         isActive: Bool? = nil
     ) {
         self.paymentMethodId = paymentMethodId
+        self.serviceFeeName = serviceFeeName
         self.usMethods = usMethods
         self.zwMethods = zwMethods
         self.priority = priority
@@ -34,6 +37,7 @@ public struct CreateDriverCustomServiceFeesRequest: Content {
 
 public struct UpdateDriverCustomServiceFeesRequest: Content {
     public let paymentMethodId: UUID?
+    public let serviceFeeName: String?
     public let usMethods: [String]?
     public let zwMethods: [String]?
     public let priority: Int?
@@ -41,12 +45,14 @@ public struct UpdateDriverCustomServiceFeesRequest: Content {
 
     public init(
         paymentMethodId: UUID? = nil,
+        serviceFeeName: String? = nil,
         usMethods: [String]? = nil,
         zwMethods: [String]? = nil,
         priority: Int? = nil,
         isActive: Bool? = nil
     ) {
         self.paymentMethodId = paymentMethodId
+        self.serviceFeeName = serviceFeeName
         self.usMethods = usMethods
         self.zwMethods = zwMethods
         self.priority = priority
