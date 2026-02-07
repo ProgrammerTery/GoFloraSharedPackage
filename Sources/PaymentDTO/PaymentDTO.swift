@@ -99,13 +99,13 @@ public struct PaymentMethodsResponse: Content {
 public struct PayNowPaymentSuccessResponseDTO: Content {
     public let status: String
     public let paynowreference: String
-    public let pollUrl: String
+    public let pollurl: String
     public let browserurl: String
 
-    public init(status: String, paynowreference: String, pollUrl: String,browserurl: String) {
+    public init(status: String, paynowreference: String, pollurl: String,browserurl: String) {
         self.status = status
         self.paynowreference = paynowreference
-        self.pollUrl = pollUrl
+        self.pollurl = pollurl
         self.browserurl = browserurl
     }
 }
@@ -115,14 +115,14 @@ public struct PaymentStatusResponseDTO: Content {
     public let amount: Double
     public let status: String
     public let paynowreference: String?
-    public let pollUrl: String?
-    
-    public init(isPaid: Bool, amount: Double, status: String, paynowreference: String?, pollUrl: String?) {
+    public let pollurl: String?
+
+    public init(isPaid: Bool, amount: Double, status: String, paynowreference: String?, pollurl: String?) {
         self.isPaid = isPaid
         self.amount = amount
         self.status = status
         self.paynowreference = paynowreference
-        self.pollUrl = pollUrl
+        self.pollurl = pollurl
     }
 }
 
@@ -153,15 +153,15 @@ public struct PayNowWebhookPayloadDTO: Content {
     public let paynowreference: String
     public let amount: String
     public let status: String
-    public let pollUrl: String
+    public let pollurl: String
     public let hash: String?
     
-    public init(reference: String, paynowreference: String, amount: String, status: String, pollUrl: String, hash: String?) {
+    public init(reference: String, paynowreference: String, amount: String, status: String, pollurl: String, hash: String?) {
         self.reference = reference
         self.paynowreference = paynowreference
         self.amount = amount
         self.status = status
-        self.pollUrl = pollUrl
+        self.pollurl = pollurl
         self.hash = hash
     }
 }
