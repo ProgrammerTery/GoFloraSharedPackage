@@ -98,13 +98,13 @@ public struct PaymentMethodsResponse: Content {
 
 public struct PayNowPaymentSuccessResponseDTO: Content {
     public let status: String
-    public let paynowReference: String
+    public let paynowreference: String
     public let pollUrl: String
     public let browserurl: String
 
-    public init(status: String, paynowReference: String, pollUrl: String,browserurl: String) {
+    public init(status: String, paynowreference: String, pollUrl: String,browserurl: String) {
         self.status = status
-        self.paynowReference = paynowReference
+        self.paynowreference = paynowreference
         self.pollUrl = pollUrl
         self.browserurl = browserurl
     }
@@ -114,14 +114,14 @@ public struct PaymentStatusResponseDTO: Content {
     public let isPaid: Bool
     public let amount: Double
     public let status: String
-    public let paynowReference: String?
+    public let paynowreference: String?
     public let pollUrl: String?
     
-    public init(isPaid: Bool, amount: Double, status: String, paynowReference: String?, pollUrl: String?) {
+    public init(isPaid: Bool, amount: Double, status: String, paynowreference: String?, pollUrl: String?) {
         self.isPaid = isPaid
         self.amount = amount
         self.status = status
-        self.paynowReference = paynowReference
+        self.paynowreference = paynowreference
         self.pollUrl = pollUrl
     }
 }
@@ -150,15 +150,15 @@ public struct DriverPayoutResponse: Content {
 
 public struct PayNowWebhookPayloadDTO: Content {
     public let reference: String
-    public let paynowReference: String
+    public let paynowreference: String
     public let amount: String
     public let status: String
     public let pollUrl: String
     public let hash: String?
     
-    public init(reference: String, paynowReference: String, amount: String, status: String, pollUrl: String, hash: String?) {
+    public init(reference: String, paynowreference: String, amount: String, status: String, pollUrl: String, hash: String?) {
         self.reference = reference
-        self.paynowReference = paynowReference
+        self.paynowreference = paynowreference
         self.amount = amount
         self.status = status
         self.pollUrl = pollUrl
