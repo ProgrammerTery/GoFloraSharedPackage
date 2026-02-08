@@ -112,17 +112,13 @@ public struct PayNowPaymentSuccessResponseDTO: Content {
 
 public struct PaymentStatusResponseDTO: Content {
     public let isPaid: Bool
-    public let amount: Double
     public let status: String
-    public let paynowreference: String?
-    public let pollurl: String?
+    public let paynowreference: String
 
-    public init(isPaid: Bool, amount: Double, status: String, paynowreference: String?, pollurl: String?) {
+    public init(isPaid: Bool, status: String, paynowreference: String) {
         self.isPaid = isPaid
-        self.amount = amount
         self.status = status
         self.paynowreference = paynowreference
-        self.pollurl = pollurl
     }
 }
 
