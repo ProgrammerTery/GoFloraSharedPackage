@@ -51,21 +51,29 @@ public struct TripRequestCreateDTO: Content {
     public let pickupLocation: String
     public let pickupLatitude: Double?
     public let pickupLongitude: Double?
+    public let pickupLocationID: UUID?  // NEW: ID of selected popular location or zone
+    public let pickupLocationType: String?  // NEW: "popular", "zone", or "manual"
     public let dropoffLocation: String
     public let dropoffLatitude: Double?
     public let dropoffLongitude: Double?
+    public let dropoffLocationID: UUID?  // NEW: ID of selected popular location or zone
+    public let dropoffLocationType: String?  // NEW: "popular", "zone", or "manual"
     public let pickupTime: Date
     public let numberOfPassengers: Int
     public let specialInstructions: String?
-    
-    public init(clientName: String, pickupLocation: String, pickupLatitude: Double?, pickupLongitude: Double?, dropoffLocation: String, dropoffLatitude: Double?, dropoffLongitude: Double?, pickupTime: Date, numberOfPassengers: Int, specialInstructions: String?) {
+
+    public init(clientName: String, pickupLocation: String, pickupLatitude: Double?, pickupLongitude: Double?, pickupLocationID: UUID? = nil, pickupLocationType: String? = nil, dropoffLocation: String, dropoffLatitude: Double?, dropoffLongitude: Double?, dropoffLocationID: UUID? = nil, dropoffLocationType: String? = nil, pickupTime: Date, numberOfPassengers: Int, specialInstructions: String?) {
         self.clientName = clientName
         self.pickupLocation = pickupLocation
         self.pickupLatitude = pickupLatitude
         self.pickupLongitude = pickupLongitude
+        self.pickupLocationID = pickupLocationID
+        self.pickupLocationType = pickupLocationType
         self.dropoffLocation = dropoffLocation
         self.dropoffLatitude = dropoffLatitude
         self.dropoffLongitude = dropoffLongitude
+        self.dropoffLocationID = dropoffLocationID
+        self.dropoffLocationType = dropoffLocationType
         self.pickupTime = pickupTime
         self.numberOfPassengers = numberOfPassengers
         self.specialInstructions = specialInstructions
