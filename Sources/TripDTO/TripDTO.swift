@@ -80,4 +80,19 @@ public struct TripRequestCreateDTO: Content {
     }
 }
 
+public struct TripCancellationDTO: Content {
+    public let id: UUID?
+    public let tripRequestID: UUID
+    public let reason: String
+    public let cancelledBy: String
+    public let cancelledAt: Date
+
+    public init(id: UUID?, tripRequestID: UUID, reason: String, cancelledBy: String, cancelledAt: Date) {
+        self.id = id
+        self.tripRequestID = tripRequestID
+        self.reason = reason
+        self.cancelledBy = cancelledBy
+        self.cancelledAt = cancelledAt
+    }
+}
 

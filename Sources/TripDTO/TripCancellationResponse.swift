@@ -20,8 +20,8 @@ public struct TripCancellationResponse: Content {
 }
 
 
-public struct TripCancellationDTO: Content {
-    
+public struct TripCancellationQueryDTO: Content {
+
     public let id: UUID
     public let tripRequestID: UUID
     public  let cancelledByType: String
