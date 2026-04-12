@@ -58,3 +58,17 @@ public struct LoginPageContext: Content {
         self.prefillEmail = prefillEmail
     }
 }
+
+public struct PaginatedTripHistoryResponse: Content {
+    public let trips: [TripSummaryContext]
+    public let total: Int
+    public let page: Int
+    public let perPage: Int
+
+    public init(trips: [TripSummaryContext], total: Int, page: Int, perPage: Int) {
+        self.trips = trips
+        self.total = total
+        self.page = page
+        self.perPage = perPage
+    }
+}

@@ -96,3 +96,33 @@ public struct TripCancellationDTO: Content {
     }
 }
 
+
+// MARK: - Paginated Response DTOs
+
+public struct PaginatedTripsResponse: Content {
+    public let trips: [TripRequestDTO]
+    public let total: Int
+    public let page: Int
+    public let perPage: Int
+
+    public init(trips: [TripRequestDTO], total: Int, page: Int, perPage: Int) {
+        self.trips = trips
+        self.total = total
+        self.page = page
+        self.perPage = perPage
+    }
+}
+
+public struct PaginatedAssignedTripsResponse: Content {
+    public let trips: [TripRequestDTO]
+    public let total: Int
+    public let page: Int
+    public let perPage: Int
+
+    public init(trips: [TripRequestDTO], total: Int, page: Int, perPage: Int) {
+        self.trips = trips
+        self.total = total
+        self.page = page
+        self.perPage = perPage
+    }
+}
