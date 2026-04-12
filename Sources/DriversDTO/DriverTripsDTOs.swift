@@ -48,12 +48,25 @@ public struct AvailableTripsPageContext: Content {
     public let pageType: String
     public let trips: [TripSummaryContext]
     public let driver: DriverProfileDTO
+    // Pagination fields
+    public let total: Int
+    public let page: Int
+    public let perPage: Int
+    public let totalPages: Int
+    public let hasNextPage: Bool
+    public let hasPrevPage: Bool
 
-    public init(title: String, pageType: String, trips: [TripSummaryContext], driver: DriverProfileDTO) {
+    public init(title: String, pageType: String, trips: [TripSummaryContext], driver: DriverProfileDTO, total: Int, page: Int, perPage: Int, totalPages: Int, hasNextPage: Bool, hasPrevPage: Bool) {
         self.title = title
         self.pageType = pageType
         self.trips = trips
         self.driver = driver
+        self.total = total
+        self.page = page
+        self.perPage = perPage
+        self.totalPages = totalPages
+        self.hasNextPage = hasNextPage
+        self.hasPrevPage = hasPrevPage
     }
 }
 
@@ -189,12 +202,25 @@ public struct AssignedTripsPageContext: Content {
     public  let pageType: String
     public  let trips: [AssignedTripContext]
     public  let driver: DriverProfileDTO
+    // Pagination fields
+    public let total: Int
+    public let page: Int
+    public let perPage: Int
+    public let totalPages: Int
+    public let hasNextPage: Bool
+    public let hasPrevPage: Bool
 
-    public init(title: String, pageType: String, trips: [AssignedTripContext], driver: DriverProfileDTO) {
+    public init(title: String, pageType: String, trips: [AssignedTripContext], driver: DriverProfileDTO, total: Int, page: Int, perPage: Int, totalPages: Int, hasNextPage: Bool, hasPrevPage: Bool) {
         self.title = title
         self.pageType = pageType
         self.trips = trips
         self.driver = driver
+        self.total = total
+        self.page = page
+        self.perPage = perPage
+        self.totalPages = totalPages
+        self.hasNextPage = hasNextPage
+        self.hasPrevPage = hasPrevPage
     }
 
 }
@@ -220,5 +246,49 @@ public struct AssignedTripContext: Content {
         self.clientPhone = clientPhone
         self.canStart = canStart
         self.canComplete = canComplete
+    }
+}
+
+// MARK: - Paginated Response DTOs
+
+public struct PaginatedTripsResponse: Content {
+    public let trips: [TripRequestDTO]
+    public let total: Int
+    public let page: Int
+    public let perPage: Int
+
+    public init(trips: [TripRequestDTO], total: Int, page: Int, perPage: Int) {
+        self.trips = trips
+        self.total = total
+        self.page = page
+        self.perPage = perPage
+    }
+}
+
+public struct PaginatedTripHistoryResponse: Content {
+    public let trips: [TripSummaryContext]
+    public let total: Int
+    public let page: Int
+    public let perPage: Int
+
+    public init(trips: [TripSummaryContext], total: Int, page: Int, perPage: Int) {
+        self.trips = trips
+        self.total = total
+        self.page = page
+        self.perPage = perPage
+    }
+}
+
+public struct PaginatedAssignedTripsResponse: Content {
+    public let trips: [TripRequestDTO]
+    public let total: Int
+    public let page: Int
+    public let perPage: Int
+
+    public init(trips: [TripRequestDTO], total: Int, page: Int, perPage: Int) {
+        self.trips = trips
+        self.total = total
+        self.page = page
+        self.perPage = perPage
     }
 }
