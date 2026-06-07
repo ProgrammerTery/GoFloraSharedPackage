@@ -85,6 +85,24 @@ public struct PayonifyMobileMoney: Content {
         self.ecocash = ecocash
         self.onemoney = onemoney
     }
+
+    // Custom encoding to only include non-nil values
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+
+        // Only encode the provider that has a value
+        if let ecocash = ecocash {
+            try container.encode(ecocash, forKey: .ecocash)
+        }
+        if let onemoney = onemoney {
+            try container.encode(onemoney, forKey: .onemoney)
+        }
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case ecocash
+        case onemoney
+    }
 }
 
 /// EcoCash mobile money details
