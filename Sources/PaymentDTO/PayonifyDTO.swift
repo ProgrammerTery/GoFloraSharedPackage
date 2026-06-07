@@ -299,7 +299,7 @@ public struct PayonifyChargeResponse: Content {
     public let object: String                           // "charge"
     public let amount: PayonifyAmount
     public let livemode: String
-    public let created: Int                             // Unix timestamp
+    public let created: Int?                             // Unix timestamp
     public let paid: Bool
     public let metadata: [String: String]?
     public let client_secret: String
@@ -322,7 +322,7 @@ public struct PayonifyChargeResponse: Content {
         object: String,
         amount: PayonifyAmount,
         livemode: String,
-        created: Int,
+        created: Int?,
         paid: Bool,
         metadata: [String: String]?,
         client_secret: String,
