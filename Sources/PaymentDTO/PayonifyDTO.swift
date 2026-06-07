@@ -280,7 +280,7 @@ public struct PayonifyChargeResponse: Content {
     public let id: String
     public let object: String                           // "charge"
     public let amount: PayonifyAmount
-    public let livemode: Bool
+    public let livemode: String
     public let created: Int                             // Unix timestamp
     public let paid: Bool
     public let metadata: [String: String]?
@@ -303,7 +303,7 @@ public struct PayonifyChargeResponse: Content {
         id: String,
         object: String,
         amount: PayonifyAmount,
-        livemode: Bool,
+        livemode: String,
         created: Int,
         paid: Bool,
         metadata: [String: String]?,
@@ -412,7 +412,7 @@ public struct PayonifyPayoutResponse: Content {
     public let object: String                           // "payout"
     public let amount: PayonifyAmount
     public let created: Int                             // Unix timestamp
-    public let livemode: Bool
+    public let livemode: String
     public let status: String                           // PayonifyPayoutStatus
     public let destination: PayonifyDestination
     public let description: String?
@@ -425,7 +425,7 @@ public struct PayonifyPayoutResponse: Content {
         object: String,
         amount: PayonifyAmount,
         created: Int,
-        livemode: Bool,
+        livemode: String,
         status: String,
         destination: PayonifyDestination,
         description: String?,
@@ -468,10 +468,10 @@ public struct PayonifyWebhookEvent: Content {
     public let object: String                           // "event"
     public let type: String                             // PayonifyEventType
     public let created: Int                             // Unix timestamp
-    public let livemode: Bool
+    public let livemode: String
     public let data: PayonifyWebhookData
 
-    public init(id: String, object: String, type: String, created: Int, livemode: Bool, data: PayonifyWebhookData) {
+    public init(id: String, object: String, type: String, created: Int, livemode: String, data: PayonifyWebhookData) {
         self.id = id
         self.object = object
         self.type = type
