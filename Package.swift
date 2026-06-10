@@ -10,7 +10,7 @@ let package = Package(
         // Main product with all DTOs
         .library(
             name: "GoFloraSharedPackage",
-            targets: ["ClientDTO", "DriversDTO", "PaymentDTO", "TripDTO", "SharedModels", "LocationService"]
+            targets: ["ClientDTO", "DriversDTO", "PaymentDTO", "TripDTO", "SharedModels", "LocationService", "AdminDTO"]
         ),
         // Individual products for granular imports
         .library(name: "ClientDTO", targets: ["ClientDTO"]),
@@ -18,7 +18,8 @@ let package = Package(
         .library(name: "PaymentDTO", targets: ["PaymentDTO"]),
         .library(name: "TripDTO", targets: ["TripDTO"]),
         .library(name: "SharedModels", targets: ["SharedModels"]),
-        .library(name: "LocationService", targets: ["LocationService"])
+        .library(name: "LocationService", targets: ["LocationService"]),
+        .library(name: "AdminDTO", targets: ["AdminDTO"])
     ],
     dependencies: [
         // Vapor for Content protocol
@@ -51,6 +52,12 @@ let package = Package(
         ),
         .target(
             name: "LocationService",
+            dependencies: [
+                .product(name: "Vapor", package: "vapor")
+            ]
+        ),
+        .target(
+            name: "AdminDTO",
             dependencies: [
                 .product(name: "Vapor", package: "vapor")
             ]
