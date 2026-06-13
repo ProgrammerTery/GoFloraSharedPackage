@@ -61,8 +61,9 @@ public struct TripRequestCreateDTO: Content {
     public let pickupTime: Date
     public let numberOfPassengers: Int
     public let specialInstructions: String?
+    public let promoCode: String?  // NEW: Optional promo code
 
-    public init(clientName: String, pickupLocation: String, pickupLatitude: Double?, pickupLongitude: Double?, pickupLocationID: UUID? = nil, pickupLocationType: String? = nil, dropoffLocation: String, dropoffLatitude: Double?, dropoffLongitude: Double?, dropoffLocationID: UUID? = nil, dropoffLocationType: String? = nil, pickupTime: Date, numberOfPassengers: Int, specialInstructions: String?) {
+    public init(clientName: String, pickupLocation: String, pickupLatitude: Double?, pickupLongitude: Double?, pickupLocationID: UUID? = nil, pickupLocationType: String? = nil, dropoffLocation: String, dropoffLatitude: Double?, dropoffLongitude: Double?, dropoffLocationID: UUID? = nil, dropoffLocationType: String? = nil, pickupTime: Date, numberOfPassengers: Int, specialInstructions: String?, promoCode: String? = nil) {
         self.clientName = clientName
         self.pickupLocation = pickupLocation
         self.pickupLatitude = pickupLatitude
@@ -77,6 +78,7 @@ public struct TripRequestCreateDTO: Content {
         self.pickupTime = pickupTime
         self.numberOfPassengers = numberOfPassengers
         self.specialInstructions = specialInstructions
+        self.promoCode = promoCode
     }
 }
 
