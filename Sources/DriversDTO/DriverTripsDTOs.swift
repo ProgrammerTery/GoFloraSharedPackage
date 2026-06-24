@@ -10,37 +10,7 @@ import Vapor
 
 // MARK: - Dashboard & Profile DTOs
 
-public struct DashboardPageContext: Content {
-    public let title: String
-    public let pageType: String
-    public let driver: DriverProfileDTO
-    public let stats: DriverStatsContext
-    public let recentTrips: [TripSummaryContext]
-
-    public init(title: String, pageType: String, driver: DriverProfileDTO, stats: DriverStatsContext, recentTrips: [TripSummaryContext]) {
-        self.title = title
-        self.pageType = pageType
-        self.driver = driver
-        self.stats = stats
-        self.recentTrips = recentTrips
-    }
-}
-
-
-
-public struct DriverStatsContext: Content {
-    public let activeBids: Int
-    public let assignedTrips: Int
-    public let completedTrips: Int
-    public let earnings: String
-
-    public init(activeBids: Int, assignedTrips: Int, completedTrips: Int, earnings: String) {
-        self.activeBids = activeBids
-        self.assignedTrips = assignedTrips
-        self.completedTrips = completedTrips
-        self.earnings = earnings
-    }
-}
+// Note: DashboardPageContext not used - dashboard uses direct context in controller
 
 // MARK: - Trip Management DTOs
 
@@ -56,8 +26,11 @@ public struct AvailableTripsPageContext: Content {
     public let totalPages: Int
     public let hasNextPage: Bool
     public let hasPrevPage: Bool
+    // Sidebar stats (optional)
+    public let stats: DriversDriverStatsContext?
+    public let pendingDisputesCount: Int?
 
-    public init(title: String, pageType: String, trips: [TripSummaryContext], driver: DriverProfileDTO, total: Int, page: Int, perPage: Int, totalPages: Int, hasNextPage: Bool, hasPrevPage: Bool) {
+    public init(title: String, pageType: String, trips: [TripSummaryContext], driver: DriverProfileDTO, total: Int, page: Int, perPage: Int, totalPages: Int, hasNextPage: Bool, hasPrevPage: Bool, stats: DriversDriverStatsContext? = nil, pendingDisputesCount: Int? = nil) {
         self.title = title
         self.pageType = pageType
         self.trips = trips
@@ -68,6 +41,8 @@ public struct AvailableTripsPageContext: Content {
         self.totalPages = totalPages
         self.hasNextPage = hasNextPage
         self.hasPrevPage = hasPrevPage
+        self.stats = stats
+        self.pendingDisputesCount = pendingDisputesCount
     }
 }
 
@@ -168,14 +143,19 @@ public struct BidContext: Content {
         public let driver: DriverProfileDTO
         public let pendingBidsCount: Int
         public let acceptedBidsCount: Int
+        // Sidebar stats (optional)
+        public let stats: DriversDriverStatsContext?
+        public let pendingDisputesCount: Int?
 
-        public init(title: String, pageType: String, bids: [BidSummaryContext], driver: DriverProfileDTO, pendingBidsCount : Int, acceptedBidsCount : Int) {
+        public init(title: String, pageType: String, bids: [BidSummaryContext], driver: DriverProfileDTO, pendingBidsCount : Int, acceptedBidsCount : Int, stats: DriversDriverStatsContext? = nil, pendingDisputesCount: Int? = nil) {
             self.title = title
             self.pageType = pageType
             self.bids = bids
             self.driver = driver
             self.pendingBidsCount = pendingBidsCount
             self.acceptedBidsCount = acceptedBidsCount
+            self.stats = stats
+            self.pendingDisputesCount = pendingDisputesCount
         }
 }
 
@@ -210,8 +190,11 @@ public struct AssignedTripsPageContext: Content {
     public let totalPages: Int
     public let hasNextPage: Bool
     public let hasPrevPage: Bool
+    // Sidebar stats (optional)
+    public let stats: DriversDriverStatsContext?
+    public let pendingDisputesCount: Int?
 
-    public init(title: String, pageType: String, trips: [AssignedTripContext], driver: DriverProfileDTO, total: Int, page: Int, perPage: Int, totalPages: Int, hasNextPage: Bool, hasPrevPage: Bool) {
+    public init(title: String, pageType: String, trips: [AssignedTripContext], driver: DriverProfileDTO, total: Int, page: Int, perPage: Int, totalPages: Int, hasNextPage: Bool, hasPrevPage: Bool, stats: DriversDriverStatsContext? = nil, pendingDisputesCount: Int? = nil) {
         self.title = title
         self.pageType = pageType
         self.trips = trips
@@ -222,6 +205,8 @@ public struct AssignedTripsPageContext: Content {
         self.totalPages = totalPages
         self.hasNextPage = hasNextPage
         self.hasPrevPage = hasPrevPage
+        self.stats = stats
+        self.pendingDisputesCount = pendingDisputesCount
     }
 
 }
@@ -250,3 +235,19 @@ public struct AssignedTripContext: Content {
     }
 }
 
+// MARK: - Sidebar Stats Context
+
+/// Simplified stats context for sidebar display across all pages
+public struct DriversDriverStatsContext: Content {
+    public let activeBids: String
+    public let assignedTrips: String
+    public let completedTrips: String
+    public let earningsToday: String
+
+    public init(activeBids: String, assignedTrips: String, completedTrips: String, earningsToday: String) {
+        self.activeBids = activeBids
+        self.assignedTrips = assignedTrips
+        self.completedTrips = completedTrips
+        self.earningsToday = earningsToday
+    }
+}
