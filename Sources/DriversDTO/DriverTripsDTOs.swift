@@ -234,20 +234,3 @@ public struct AssignedTripContext: Content {
         self.canComplete = canComplete
     }
 }
-
-// MARK: - Sidebar Stats Context
-
-/// Simplified stats context for sidebar display across all pages
-public struct DriversDriverStatsContext: Content {
-    public let activeBids: String
-    public let assignedTrips: String
-    public let completedTrips: String
-    public let earningsToday: String
-
-    public init(activeBids: String, assignedTrips: String, completedTrips: String, earningsToday: String) {
-        self.activeBids = activeBids
-        self.assignedTrips = assignedTrips
-        self.completedTrips = completedTrips
-        self.earningsToday = earningsToday
-    }
-}
