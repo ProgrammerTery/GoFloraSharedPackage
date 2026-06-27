@@ -212,6 +212,109 @@ public struct PayonifyRecipient: Content {
 
 // MARK: - Charges API - Request DTOs
 
+// MARK: - Checkout Sessions API (Airport Transfers - Upfront Payment)
+
+/// Create a Payonify checkout session for upfront Visa card payment
+public struct PayonifyCreateCheckoutRequest: Content {
+    public let amount: Int                              // Required, amount in cents
+    public let currency: String                         // Required: "usd"
+    public let source: String                           // Required: "web"
+    public let description: String?                     // e.g., "Airport Transfer - VFA Airport"
+    public let payment_method_types: [String]           // ["card"] — Visa only for transfers
+    public let customer_email: String?                  // Pre-fill customer email
+    public let metadata: [String: String]?              // trip_id, client_id
+    public let success_url: String                      // Redirect after successful payment
+    public let cancel_url: String                       // Redirect if customer cancels
+
+    public init(
+        amount: Int,
+        currency: String,
+        source: String = "web",
+        description: String? = nil,
+        payment_method_types: [String] = ["card"],
+        customer_email: String? = nil,
+        metadata: [String: String]? = nil,
+        success_url: String,
+        cancel_url: String
+    ) {
+        self.amount = amount
+        self.currency = currency
+        self.source = source
+        self.description = description
+        self.payment_method_types = payment_method_types
+        self.customer_email = customer_email
+        self.metadata = metadata
+        self.success_url = success_url
+        self.cancel_url = cancel_url
+    }
+}
+
+/// Payonify checkout session response
+public struct PayonifyCheckoutResponse: Content {
+    public let id: String                               // Checkout session ID (prefix: "cs_")
+    public let object: String                           // "checkout_session"
+    public let checkout_url: String                     // Redirect customer here to pay
+    public let status: String                           // "open", "complete", "expired"
+    public let payment_status: String                   // "paid", "unpaid"
+    public let amount: PayonifyAmount
+    public let customer_email: String?
+    public let metadata: [String: String]?
+    public let created: Int?                            // Unix timestamp
+    public let expires_at: Int?                         // Unix timestamp
+
+    public init(
+        id: String,
+        object: String = "checkout_session",
+        checkout_url: String,
+        status: String,
+        payment_status: String,
+        amount: PayonifyAmount,
+        customer_email: String? = nil,
+        metadata: [String: String]? = nil,
+        created: Int? = nil,
+        expires_at: Int? = nil
+    ) {
+        self.id = id
+        self.object = object
+        self.checkout_url = checkout_url
+        self.status = status
+        self.payment_status = payment_status
+        self.amount = amount
+        self.customer_email = customer_email
+        self.metadata = metadata
+        self.created = created
+        self.expires_at = expires_at
+    }
+}
+
+/// Retrieve checkout session status (for verifying payment)
+public struct PayonifyCheckoutStatusResponse: Content {
+    public let id: String
+    public let status: String                           // "open", "complete", "expired"
+    public let payment_status: String                   // "paid", "unpaid"
+    public let payment_intent_id: String?               // Underlying charge ID
+    public let amount_total: Int                        // Cents
+    public let currency: String
+
+    public init(
+        id: String,
+        status: String,
+        payment_status: String,
+        payment_intent_id: String? = nil,
+        amount_total: Int,
+        currency: String
+    ) {
+        self.id = id
+        self.status = status
+        self.payment_status = payment_status
+        self.payment_intent_id = payment_intent_id
+        self.amount_total = amount_total
+        self.currency = currency
+    }
+}
+
+// MARK: - Charges API - Request DTOs (Existing)
+
 /// Create charge request
 public struct PayonifyCreateChargeRequest: Content {
     public let amount: Int                              // Required, min: 100

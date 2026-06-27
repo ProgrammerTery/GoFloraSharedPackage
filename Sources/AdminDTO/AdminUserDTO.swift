@@ -40,6 +40,7 @@ public struct AdminDriverDTO: Content {
     public let totalEarnings: Double?
     public let createdAt: Date?
     public let vehicle: VehicleInfoDTO?
+    public let subscriptionStatus: String?
     
     public init(
         id: UUID? = nil,
@@ -61,7 +62,8 @@ public struct AdminDriverDTO: Content {
         rating: Double? = nil,
         totalEarnings: Double? = nil,
         createdAt: Date? = nil,
-        vehicle: VehicleInfoDTO? = nil
+        vehicle: VehicleInfoDTO? = nil,
+        subscriptionStatus: String? = nil
     ) {
         self.id = id
         self.name = name
@@ -83,6 +85,7 @@ public struct AdminDriverDTO: Content {
         self.totalEarnings = totalEarnings
         self.createdAt = createdAt
         self.vehicle = vehicle
+        self.subscriptionStatus = subscriptionStatus
     }
 }
 

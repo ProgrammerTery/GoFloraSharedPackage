@@ -25,8 +25,17 @@ public struct TripRequestDTO: Content {
     public let status: String?
     public let driver_id: UUID?
     public let client_id: UUID?
+
+    // Airport Transfer fields
+    public let isAirportTransfer: Bool?
+    public let flightNumber: String?
+    public let airlineName: String?
+    public let terminalInfo: String?
+    public let fixedPriceCents: Int?
+    public let isPrepaid: Bool?
+    public let assignmentMode: String?  // "admin_assign" | "broadcast"
     
-    public init(id: UUID?, clientName: String, pickupLocation: String, pickupLatitude: Double?, pickupLongitude: Double?, dropoffLocation: String, dropoffLatitude: Double?, dropoffLongitude: Double?, pickupTime: Date, numberOfPassengers: Int, specialInstructions: String?, estimatedDistance: Double?, estimatedDuration: Int?, status: String?, driver_id: UUID?, client_id: UUID?) {
+    public init(id: UUID?, clientName: String, pickupLocation: String, pickupLatitude: Double?, pickupLongitude: Double?, dropoffLocation: String, dropoffLatitude: Double?, dropoffLongitude: Double?, pickupTime: Date, numberOfPassengers: Int, specialInstructions: String?, estimatedDistance: Double?, estimatedDuration: Int?, status: String?, driver_id: UUID?, client_id: UUID?, isAirportTransfer: Bool? = nil, flightNumber: String? = nil, airlineName: String? = nil, terminalInfo: String? = nil, fixedPriceCents: Int? = nil, isPrepaid: Bool? = nil, assignmentMode: String? = nil) {
         self.id = id
         self.clientName = clientName
         self.pickupLocation = pickupLocation
@@ -43,6 +52,13 @@ public struct TripRequestDTO: Content {
         self.status = status
         self.driver_id = driver_id
         self.client_id = client_id
+        self.isAirportTransfer = isAirportTransfer
+        self.flightNumber = flightNumber
+        self.airlineName = airlineName
+        self.terminalInfo = terminalInfo
+        self.fixedPriceCents = fixedPriceCents
+        self.isPrepaid = isPrepaid
+        self.assignmentMode = assignmentMode
     }
 }
 
@@ -63,7 +79,13 @@ public struct TripRequestCreateDTO: Content {
     public let specialInstructions: String?
     public let promoCode: String?  // NEW: Optional promo code
 
-    public init(clientName: String, pickupLocation: String, pickupLatitude: Double?, pickupLongitude: Double?, pickupLocationID: UUID? = nil, pickupLocationType: String? = nil, dropoffLocation: String, dropoffLatitude: Double?, dropoffLongitude: Double?, dropoffLocationID: UUID? = nil, dropoffLocationType: String? = nil, pickupTime: Date, numberOfPassengers: Int, specialInstructions: String?, promoCode: String? = nil) {
+    // Airport Transfer fields
+    public let isAirportTransfer: Bool?
+    public let flightNumber: String?
+    public let airlineName: String?
+    public let terminalInfo: String?
+
+    public init(clientName: String, pickupLocation: String, pickupLatitude: Double?, pickupLongitude: Double?, pickupLocationID: UUID? = nil, pickupLocationType: String? = nil, dropoffLocation: String, dropoffLatitude: Double?, dropoffLongitude: Double?, dropoffLocationID: UUID? = nil, dropoffLocationType: String? = nil, pickupTime: Date, numberOfPassengers: Int, specialInstructions: String?, promoCode: String? = nil, isAirportTransfer: Bool? = nil, flightNumber: String? = nil, airlineName: String? = nil, terminalInfo: String? = nil) {
         self.clientName = clientName
         self.pickupLocation = pickupLocation
         self.pickupLatitude = pickupLatitude
@@ -79,6 +101,10 @@ public struct TripRequestCreateDTO: Content {
         self.numberOfPassengers = numberOfPassengers
         self.specialInstructions = specialInstructions
         self.promoCode = promoCode
+        self.isAirportTransfer = isAirportTransfer
+        self.flightNumber = flightNumber
+        self.airlineName = airlineName
+        self.terminalInfo = terminalInfo
     }
 }
 

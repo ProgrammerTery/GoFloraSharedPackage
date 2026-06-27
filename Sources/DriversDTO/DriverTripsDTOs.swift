@@ -102,8 +102,14 @@ public struct DetailedTripContext: Content {
     public let scheduledTime: String?
     public let numberOfPassengers: Int
     public let specialInstructions: String?
+    // Airport transfer fields
+    public let isAirportTransfer: Bool?
+    public let flightNumber: String?
+    public let airlineName: String?
+    public let terminalInfo: String?
+    public let fixedPrice: Int?
 
-    public init(id: String, pickup: String, destination: String, distance: String?, suggestedPrice: Double?, status: String, clientName: String?, scheduledTime: String?, numberOfPassengers: Int, specialInstructions: String?) {
+    public init(id: String, pickup: String, destination: String, distance: String?, suggestedPrice: Double?, status: String, clientName: String?, scheduledTime: String?, numberOfPassengers: Int, specialInstructions: String?, isAirportTransfer: Bool? = nil, flightNumber: String? = nil, airlineName: String? = nil, terminalInfo: String? = nil, fixedPrice: Int? = nil) {
         self.id = id
         self.pickup = pickup
         self.destination = destination
@@ -114,6 +120,11 @@ public struct DetailedTripContext: Content {
         self.scheduledTime = scheduledTime
         self.numberOfPassengers = numberOfPassengers
         self.specialInstructions = specialInstructions
+        self.isAirportTransfer = isAirportTransfer
+        self.flightNumber = flightNumber
+        self.airlineName = airlineName
+        self.terminalInfo = terminalInfo
+        self.fixedPrice = fixedPrice
     }
 }
 
@@ -221,8 +232,14 @@ public struct AssignedTripContext: Content {
     public  let clientPhone: String?
     public  let canStart: Bool
     public  let canComplete: Bool
+    // Airport transfer fields
+    public let isAirportTransfer: Bool?
+    public let flightNumber: String?
+    public let airlineName: String?
+    public let terminalInfo: String?
+    public let fixedPrice: Int?
 
-    public init(id: String, pickup: String, destination: String, status: String, scheduledTime: String, clientName: String, clientPhone: String?, canStart: Bool, canComplete: Bool) {
+    public init(id: String, pickup: String, destination: String, status: String, scheduledTime: String, clientName: String, clientPhone: String?, canStart: Bool, canComplete: Bool, isAirportTransfer: Bool? = nil, flightNumber: String? = nil, airlineName: String? = nil, terminalInfo: String? = nil, fixedPrice: Int? = nil) {
         self.id = id
         self.pickup = pickup
         self.destination = destination
@@ -232,5 +249,10 @@ public struct AssignedTripContext: Content {
         self.clientPhone = clientPhone
         self.canStart = canStart
         self.canComplete = canComplete
+        self.isAirportTransfer = isAirportTransfer
+        self.flightNumber = flightNumber
+        self.airlineName = airlineName
+        self.terminalInfo = terminalInfo
+        self.fixedPrice = fixedPrice
     }
 }
