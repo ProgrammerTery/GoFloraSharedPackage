@@ -26,8 +26,9 @@ public struct VehicleDTO: Content {
     public let vehicleHistory: String
     public let emissionsStandards: String
     public let servicetypeId: UUID
+    public let isActive: Bool?
 
-    public init(id: UUID?, registrationNumber: String, licensePlateNumber: String, make: String, model: String, yearOfManufacture: String, bodyType: String, color: String, engineSize: String, fuelType: String, transmissionType: String, seatingCapacity: String, ownerName: String, ownerAddress: String, contactInformation: String, insuranceDetails: String, vehicleHistory: String, emissionsStandards: String, servicetypeId: UUID) {
+    public init(id: UUID?, registrationNumber: String, licensePlateNumber: String, make: String, model: String, yearOfManufacture: String, bodyType: String, color: String, engineSize: String, fuelType: String, transmissionType: String, seatingCapacity: String, ownerName: String, ownerAddress: String, contactInformation: String, insuranceDetails: String, vehicleHistory: String, emissionsStandards: String, servicetypeId: UUID, isActive: Bool? = nil) {
         self.id = id
         self.registrationNumber = registrationNumber
         self.licensePlateNumber = licensePlateNumber
@@ -47,6 +48,7 @@ public struct VehicleDTO: Content {
         self.vehicleHistory = vehicleHistory
         self.emissionsStandards = emissionsStandards
         self.servicetypeId = servicetypeId
+        self.isActive = isActive
     }
 }
 

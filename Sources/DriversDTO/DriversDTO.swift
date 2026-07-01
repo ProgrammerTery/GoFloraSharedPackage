@@ -36,12 +36,18 @@ public struct DriverDTOResponseModel: Content {
    public let email: String
    public let token: String
    public let driverID: UUID
+   public let isActive: Bool
+   public let isSuspended: Bool
+   public let activationDepositPaid: Bool
 
-    public init(name: String, email: String, token: String, driverID: UUID) {
+    public init(name: String, email: String, token: String, driverID: UUID, isActive: Bool = true, isSuspended: Bool = false, activationDepositPaid: Bool = false) {
         self.name = name
         self.email = email
         self.token = token
         self.driverID = driverID
+        self.isActive = isActive
+        self.isSuspended = isSuspended
+        self.activationDepositPaid = activationDepositPaid
     }
 
 }
