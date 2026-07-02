@@ -57,9 +57,10 @@ public struct TripSummaryContext: Content {
     public let scheduledTime: String?
     public let date: String?
     public let amount: Double?
+    public let paymentMethodPreference: String?  // "any" | "cash" | "online"
 
 
-    public init(id: String, pickup: String, destination: String, distance: String?, suggestedPrice: Double?, status: String, bidAmount: Double?, scheduledTime: String?, date: String?, amount: Double?) {
+    public init(id: String, pickup: String, destination: String, distance: String?, suggestedPrice: Double?, status: String, bidAmount: Double?, scheduledTime: String?, date: String?, amount: Double?, paymentMethodPreference: String? = nil) {
         self.id = id
         self.pickup = pickup
         self.destination = destination
@@ -70,6 +71,7 @@ public struct TripSummaryContext: Content {
         self.scheduledTime = scheduledTime
         self.date = date
         self.amount = amount
+        self.paymentMethodPreference = paymentMethodPreference
     }
 }
 
@@ -108,8 +110,10 @@ public struct DetailedTripContext: Content {
     public let airlineName: String?
     public let terminalInfo: String?
     public let fixedPrice: Int?
+    // Payment method preference — "any" | "cash" | "online"
+    public let paymentMethodPreference: String?
 
-    public init(id: String, pickup: String, destination: String, distance: String?, suggestedPrice: Double?, status: String, clientName: String?, scheduledTime: String?, numberOfPassengers: Int, specialInstructions: String?, isAirportTransfer: Bool? = nil, flightNumber: String? = nil, airlineName: String? = nil, terminalInfo: String? = nil, fixedPrice: Int? = nil) {
+    public init(id: String, pickup: String, destination: String, distance: String?, suggestedPrice: Double?, status: String, clientName: String?, scheduledTime: String?, numberOfPassengers: Int, specialInstructions: String?, isAirportTransfer: Bool? = nil, flightNumber: String? = nil, airlineName: String? = nil, terminalInfo: String? = nil, fixedPrice: Int? = nil, paymentMethodPreference: String? = nil) {
         self.id = id
         self.pickup = pickup
         self.destination = destination
@@ -125,6 +129,7 @@ public struct DetailedTripContext: Content {
         self.airlineName = airlineName
         self.terminalInfo = terminalInfo
         self.fixedPrice = fixedPrice
+        self.paymentMethodPreference = paymentMethodPreference
     }
 }
 

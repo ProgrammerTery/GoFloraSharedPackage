@@ -8,6 +8,16 @@
 import Vapor
 import Foundation
 
+/// Client's declared payment intent when creating a trip request.
+/// - `any`: any accepted method, cash offered only if the assigned driver is activation-paid.
+/// - `cash`: only reach activation-paid drivers; only cash offered at payment time.
+/// - `online`: exclude cash regardless of driver activation status.
+public enum PaymentMethodPreference: String, Content, CaseIterable {
+    case any
+    case cash
+    case online
+}
+
 public struct TripRequestDTO: Content {
     public let id: UUID?
     public let clientName: String
@@ -34,8 +44,11 @@ public struct TripRequestDTO: Content {
     public let fixedPriceCents: Int?
     public let isPrepaid: Bool?
     public let assignmentMode: String?  // "admin_assign" | "broadcast"
-    
-    public init(id: UUID?, clientName: String, pickupLocation: String, pickupLatitude: Double?, pickupLongitude: Double?, dropoffLocation: String, dropoffLatitude: Double?, dropoffLongitude: Double?, pickupTime: Date, numberOfPassengers: Int, specialInstructions: String?, estimatedDistance: Double?, estimatedDuration: Int?, status: String?, driver_id: UUID?, client_id: UUID?, isAirportTransfer: Bool? = nil, flightNumber: String? = nil, airlineName: String? = nil, terminalInfo: String? = nil, fixedPriceCents: Int? = nil, isPrepaid: Bool? = nil, assignmentMode: String? = nil) {
+
+    // Payment method preference (client declares at trip creation)
+    public let paymentMethodPreference: String?  // "any" | "cash" | "online"
+
+    public init(id: UUID?, clientName: String, pickupLocation: String, pickupLatitude: Double?, pickupLongitude: Double?, dropoffLocation: String, dropoffLatitude: Double?, dropoffLongitude: Double?, pickupTime: Date, numberOfPassengers: Int, specialInstructions: String?, estimatedDistance: Double?, estimatedDuration: Int?, status: String?, driver_id: UUID?, client_id: UUID?, isAirportTransfer: Bool? = nil, flightNumber: String? = nil, airlineName: String? = nil, terminalInfo: String? = nil, fixedPriceCents: Int? = nil, isPrepaid: Bool? = nil, assignmentMode: String? = nil, paymentMethodPreference: String? = nil) {
         self.id = id
         self.clientName = clientName
         self.pickupLocation = pickupLocation
@@ -59,6 +72,7 @@ public struct TripRequestDTO: Content {
         self.fixedPriceCents = fixedPriceCents
         self.isPrepaid = isPrepaid
         self.assignmentMode = assignmentMode
+        self.paymentMethodPreference = paymentMethodPreference
     }
 }
 
@@ -67,17 +81,17 @@ public struct TripRequestCreateDTO: Content {
     public let pickupLocation: String
     public let pickupLatitude: Double?
     public let pickupLongitude: Double?
-    public let pickupLocationID: UUID?  // NEW: ID of selected popular location or zone
-    public let pickupLocationType: String?  // NEW: "popular", "zone", or "manual"
+    public let pickupLocationID: UUID?  // ID of selected popular location or zone
+    public let pickupLocationType: String?  // "popular", "zone", or "manual"
     public let dropoffLocation: String
     public let dropoffLatitude: Double?
     public let dropoffLongitude: Double?
-    public let dropoffLocationID: UUID?  // NEW: ID of selected popular location or zone
-    public let dropoffLocationType: String?  // NEW: "popular", "zone", or "manual"
+    public let dropoffLocationID: UUID?
+    public let dropoffLocationType: String?
     public let pickupTime: Date
     public let numberOfPassengers: Int
     public let specialInstructions: String?
-    public let promoCode: String?  // NEW: Optional promo code
+    public let promoCode: String?
 
     // Airport Transfer fields
     public let isAirportTransfer: Bool?
@@ -85,7 +99,10 @@ public struct TripRequestCreateDTO: Content {
     public let airlineName: String?
     public let terminalInfo: String?
 
-    public init(clientName: String, pickupLocation: String, pickupLatitude: Double?, pickupLongitude: Double?, pickupLocationID: UUID? = nil, pickupLocationType: String? = nil, dropoffLocation: String, dropoffLatitude: Double?, dropoffLongitude: Double?, dropoffLocationID: UUID? = nil, dropoffLocationType: String? = nil, pickupTime: Date, numberOfPassengers: Int, specialInstructions: String?, promoCode: String? = nil, isAirportTransfer: Bool? = nil, flightNumber: String? = nil, airlineName: String? = nil, terminalInfo: String? = nil) {
+    // Payment method preference — nil is treated as .any server-side
+    public let paymentMethodPreference: PaymentMethodPreference?
+
+    public init(clientName: String, pickupLocation: String, pickupLatitude: Double?, pickupLongitude: Double?, pickupLocationID: UUID? = nil, pickupLocationType: String? = nil, dropoffLocation: String, dropoffLatitude: Double?, dropoffLongitude: Double?, dropoffLocationID: UUID? = nil, dropoffLocationType: String? = nil, pickupTime: Date, numberOfPassengers: Int, specialInstructions: String?, promoCode: String? = nil, isAirportTransfer: Bool? = nil, flightNumber: String? = nil, airlineName: String? = nil, terminalInfo: String? = nil, paymentMethodPreference: PaymentMethodPreference? = nil) {
         self.clientName = clientName
         self.pickupLocation = pickupLocation
         self.pickupLatitude = pickupLatitude
@@ -105,6 +122,7 @@ public struct TripRequestCreateDTO: Content {
         self.flightNumber = flightNumber
         self.airlineName = airlineName
         self.terminalInfo = terminalInfo
+        self.paymentMethodPreference = paymentMethodPreference
     }
 }
 
