@@ -3,7 +3,11 @@ import Vapor
 
 // MARK: - Commission Configuration DTOs
 
-/// Commission configuration DTO
+/// Commission configuration DTO.
+/// A rule that overrides the default commission for a specific tier + optional filters
+/// (day of week, time window, min/max trip amount). For airport-transfer tiers,
+/// `minTripAmount` doubles as the fixed transfer price (in dollars for the DTO surface,
+/// stored as cents on the model).
 public struct CommissionConfigDTO: Content {
     public let id: UUID?
     public let name: String
@@ -14,14 +18,16 @@ public struct CommissionConfigDTO: Content {
     public let commissionValue: Double
     public let minTripAmount: Double?
     public let maxTripAmount: Double?
-    public let serviceType: String? // "sedan", "suv", "van"
-    public let zoneName: String?
+    /// Service type this rule applies to. Nil = global (applies when no tier-specific rule matches).
+    public let serviceTypeId: UUID?
+    /// Denormalized tier name for display convenience. Not persisted.
+    public let serviceTypeName: String?
     public let dayOfWeek: Int? // 1-7 (Sunday=1)
     public let startTime: String? // HH:mm format
     public let endTime: String? // HH:mm format
     public let createdAt: Date?
     public let updatedAt: Date?
-    
+
     public init(
         id: UUID? = nil,
         name: String,
@@ -32,8 +38,8 @@ public struct CommissionConfigDTO: Content {
         commissionValue: Double,
         minTripAmount: Double? = nil,
         maxTripAmount: Double? = nil,
-        serviceType: String? = nil,
-        zoneName: String? = nil,
+        serviceTypeId: UUID? = nil,
+        serviceTypeName: String? = nil,
         dayOfWeek: Int? = nil,
         startTime: String? = nil,
         endTime: String? = nil,
@@ -49,8 +55,8 @@ public struct CommissionConfigDTO: Content {
         self.commissionValue = commissionValue
         self.minTripAmount = minTripAmount
         self.maxTripAmount = maxTripAmount
-        self.serviceType = serviceType
-        self.zoneName = zoneName
+        self.serviceTypeId = serviceTypeId
+        self.serviceTypeName = serviceTypeName
         self.dayOfWeek = dayOfWeek
         self.startTime = startTime
         self.endTime = endTime
@@ -69,12 +75,11 @@ public struct CreateCommissionConfigRequest: Content {
     public let commissionValue: Double
     public let minTripAmount: Double?
     public let maxTripAmount: Double?
-    public let serviceType: String?
-    public let zoneName: String?
+    public let serviceTypeId: UUID?
     public let dayOfWeek: Int?
     public let startTime: String?
     public let endTime: String?
-    
+
     public init(
         name: String,
         description: String? = nil,
@@ -84,8 +89,7 @@ public struct CreateCommissionConfigRequest: Content {
         commissionValue: Double,
         minTripAmount: Double? = nil,
         maxTripAmount: Double? = nil,
-        serviceType: String? = nil,
-        zoneName: String? = nil,
+        serviceTypeId: UUID? = nil,
         dayOfWeek: Int? = nil,
         startTime: String? = nil,
         endTime: String? = nil
@@ -98,8 +102,7 @@ public struct CreateCommissionConfigRequest: Content {
         self.commissionValue = commissionValue
         self.minTripAmount = minTripAmount
         self.maxTripAmount = maxTripAmount
-        self.serviceType = serviceType
-        self.zoneName = zoneName
+        self.serviceTypeId = serviceTypeId
         self.dayOfWeek = dayOfWeek
         self.startTime = startTime
         self.endTime = endTime
@@ -116,12 +119,11 @@ public struct UpdateCommissionConfigRequest: Content {
     public let commissionValue: Double?
     public let minTripAmount: Double?
     public let maxTripAmount: Double?
-    public let serviceType: String?
-    public let zoneName: String?
+    public let serviceTypeId: UUID?
     public let dayOfWeek: Int?
     public let startTime: String?
     public let endTime: String?
-    
+
     public init(
         name: String? = nil,
         description: String? = nil,
@@ -131,8 +133,7 @@ public struct UpdateCommissionConfigRequest: Content {
         commissionValue: Double? = nil,
         minTripAmount: Double? = nil,
         maxTripAmount: Double? = nil,
-        serviceType: String? = nil,
-        zoneName: String? = nil,
+        serviceTypeId: UUID? = nil,
         dayOfWeek: Int? = nil,
         startTime: String? = nil,
         endTime: String? = nil
@@ -145,8 +146,7 @@ public struct UpdateCommissionConfigRequest: Content {
         self.commissionValue = commissionValue
         self.minTripAmount = minTripAmount
         self.maxTripAmount = maxTripAmount
-        self.serviceType = serviceType
-        self.zoneName = zoneName
+        self.serviceTypeId = serviceTypeId
         self.dayOfWeek = dayOfWeek
         self.startTime = startTime
         self.endTime = endTime
@@ -159,7 +159,7 @@ public struct CommissionConfigListResponse: Content {
     public let total: Int
     public let page: Int
     public let perPage: Int
-    
+
     public init(configs: [CommissionConfigDTO], total: Int, page: Int, perPage: Int) {
         self.configs = configs
         self.total = total
@@ -172,19 +172,17 @@ public struct CommissionConfigListResponse: Content {
 public struct CommissionConfigQueryFilters: Content {
     public let isActive: Bool?
     public let commissionType: String?
-    public let serviceType: String?
-    public let zoneName: String?
+    public let serviceTypeId: UUID?
     public let minPriority: Int?
     public let maxPriority: Int?
     public let searchTerm: String?
     public let page: Int?
     public let perPage: Int?
-    
+
     public init(
         isActive: Bool? = nil,
         commissionType: String? = nil,
-        serviceType: String? = nil,
-        zoneName: String? = nil,
+        serviceTypeId: UUID? = nil,
         minPriority: Int? = nil,
         maxPriority: Int? = nil,
         searchTerm: String? = nil,
@@ -193,8 +191,7 @@ public struct CommissionConfigQueryFilters: Content {
     ) {
         self.isActive = isActive
         self.commissionType = commissionType
-        self.serviceType = serviceType
-        self.zoneName = zoneName
+        self.serviceTypeId = serviceTypeId
         self.minPriority = minPriority
         self.maxPriority = maxPriority
         self.searchTerm = searchTerm
