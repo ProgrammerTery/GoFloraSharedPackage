@@ -82,6 +82,7 @@ public struct DriverInvoiceDTO: Content {
     public let paidAt: Date?
     public let createdAt: Date?
     public let updatedAt: Date?
+    public let mobileNumber: String?
 
     // Related data (when eager loaded)
     public let tripPickupLocation: String?
@@ -91,7 +92,7 @@ public struct DriverInvoiceDTO: Content {
     public let methodType: String?
     public let feeAmount: Double?
 
-    public init(id: UUID?, driverCustomFeesId: UUID, tripId: UUID, method: String, currency: String, baseFare: Double? = nil, driverServiceFee: Double, platformFee: Double, amount: Double, status: String, paidAt: Date?, createdAt: Date?, updatedAt: Date?, tripPickupLocation: String?, tripDropoffLocation: String?, tripStatus: String?, driverName: String?, methodType: String?, feeAmount: Double?) {
+    public init(id: UUID?, driverCustomFeesId: UUID, tripId: UUID, method: String, currency: String, baseFare: Double? = nil, driverServiceFee: Double, platformFee: Double, amount: Double, status: String, paidAt: Date?, createdAt: Date?, updatedAt: Date?, mobileNumber: String? = nil, tripPickupLocation: String?, tripDropoffLocation: String?, tripStatus: String?, driverName: String?, methodType: String?, feeAmount: Double?) {
         self.id = id
         self.driverCustomFeesId = driverCustomFeesId
         self.tripId = tripId
@@ -105,6 +106,7 @@ public struct DriverInvoiceDTO: Content {
         self.paidAt = paidAt
         self.createdAt = createdAt
         self.updatedAt = updatedAt
+        self.mobileNumber = mobileNumber
         self.tripPickupLocation = tripPickupLocation
         self.tripDropoffLocation = tripDropoffLocation
         self.tripStatus = tripStatus
