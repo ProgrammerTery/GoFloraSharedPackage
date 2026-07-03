@@ -78,10 +78,16 @@ public struct AdminPayoutDTO: Content {
 public struct ApprovePayoutRequest: Content {
     public let adminId: String
     public let notes: String?
-    
-    public init(adminId: String, notes: String? = nil) {
+    /// Required when Payonify B2C is enabled: driver's mobile number to pay out to
+    public let mobileNumber: String?
+    /// Required when Payonify B2C is enabled: "ecocash" or "onemoney"
+    public let mobileProvider: String?
+
+    public init(adminId: String, notes: String? = nil, mobileNumber: String? = nil, mobileProvider: String? = nil) {
         self.adminId = adminId
         self.notes = notes
+        self.mobileNumber = mobileNumber
+        self.mobileProvider = mobileProvider
     }
 }
 
