@@ -47,8 +47,9 @@ public struct TripRequestDTO: Content {
 
     // Payment method preference (client declares at trip creation)
     public let paymentMethodPreference: String?  // "any" | "cash" | "online"
+    public let clientAmount: Double?
 
-    public init(id: UUID?, clientName: String, pickupLocation: String, pickupLatitude: Double?, pickupLongitude: Double?, dropoffLocation: String, dropoffLatitude: Double?, dropoffLongitude: Double?, pickupTime: Date, numberOfPassengers: Int, specialInstructions: String?, estimatedDistance: Double?, estimatedDuration: Int?, status: String?, driver_id: UUID?, client_id: UUID?, isAirportTransfer: Bool? = nil, flightNumber: String? = nil, airlineName: String? = nil, terminalInfo: String? = nil, fixedPriceCents: Int? = nil, isPrepaid: Bool? = nil, assignmentMode: String? = nil, paymentMethodPreference: String? = nil) {
+    public init(id: UUID?, clientName: String, pickupLocation: String, pickupLatitude: Double?, pickupLongitude: Double?, dropoffLocation: String, dropoffLatitude: Double?, dropoffLongitude: Double?, pickupTime: Date, numberOfPassengers: Int, specialInstructions: String?, estimatedDistance: Double?, estimatedDuration: Int?, status: String?, driver_id: UUID?, client_id: UUID?, isAirportTransfer: Bool? = nil, flightNumber: String? = nil, airlineName: String? = nil, terminalInfo: String? = nil, fixedPriceCents: Int? = nil, isPrepaid: Bool? = nil, assignmentMode: String? = nil, paymentMethodPreference: String? = nil, clientAmount: Double? = nil) {
         self.id = id
         self.clientName = clientName
         self.pickupLocation = pickupLocation
@@ -73,6 +74,7 @@ public struct TripRequestDTO: Content {
         self.isPrepaid = isPrepaid
         self.assignmentMode = assignmentMode
         self.paymentMethodPreference = paymentMethodPreference
+        self.clientAmount = clientAmount
     }
 }
 
@@ -101,8 +103,9 @@ public struct TripRequestCreateDTO: Content {
 
     // Payment method preference — nil is treated as .any server-side
     public let paymentMethodPreference: PaymentMethodPreference?
+    public let clientAmount: Double?
 
-    public init(clientName: String, pickupLocation: String, pickupLatitude: Double?, pickupLongitude: Double?, pickupLocationID: UUID? = nil, pickupLocationType: String? = nil, dropoffLocation: String, dropoffLatitude: Double?, dropoffLongitude: Double?, dropoffLocationID: UUID? = nil, dropoffLocationType: String? = nil, pickupTime: Date, numberOfPassengers: Int, specialInstructions: String?, promoCode: String? = nil, isAirportTransfer: Bool? = nil, flightNumber: String? = nil, airlineName: String? = nil, terminalInfo: String? = nil, paymentMethodPreference: PaymentMethodPreference? = nil) {
+    public init(clientName: String, pickupLocation: String, pickupLatitude: Double?, pickupLongitude: Double?, pickupLocationID: UUID? = nil, pickupLocationType: String? = nil, dropoffLocation: String, dropoffLatitude: Double?, dropoffLongitude: Double?, dropoffLocationID: UUID? = nil, dropoffLocationType: String? = nil, pickupTime: Date, numberOfPassengers: Int, specialInstructions: String?, promoCode: String? = nil, isAirportTransfer: Bool? = nil, flightNumber: String? = nil, airlineName: String? = nil, terminalInfo: String? = nil, paymentMethodPreference: PaymentMethodPreference? = nil, clientAmount: Double? = nil) {
         self.clientName = clientName
         self.pickupLocation = pickupLocation
         self.pickupLatitude = pickupLatitude
@@ -123,6 +126,7 @@ public struct TripRequestCreateDTO: Content {
         self.airlineName = airlineName
         self.terminalInfo = terminalInfo
         self.paymentMethodPreference = paymentMethodPreference
+        self.clientAmount = clientAmount
     }
 }
 
@@ -170,5 +174,19 @@ public struct PaginatedAssignedTripsResponse: Content {
         self.total = total
         self.page = page
         self.perPage = perPage
+    }
+}
+
+public struct AcceptClientAmountRequest: Content {
+    public let driverCustomFeesId: UUID
+    public init(driverCustomFeesId: UUID) {
+        self.driverCustomFeesId = driverCustomFeesId
+    }
+}
+
+public struct BumpClientAmountRequest: Content {
+    public let newAmount: Double
+    public init(newAmount: Double) {
+        self.newAmount = newAmount
     }
 }
