@@ -82,14 +82,16 @@ public struct TripDetailsPageContext: Content {
     public let driver: DriverProfileDTO
     public let canBid: Bool
     public let existingBid: BidContext?
+    public let fees: [DriverCustomServiceFeesDTO]
 
-    public init(title: String, pageType: String, trip: DetailedTripContext, driver: DriverProfileDTO, canBid: Bool, existingBid: BidContext?) {
+    public init(title: String, pageType: String, trip: DetailedTripContext, driver: DriverProfileDTO, canBid: Bool, existingBid: BidContext?, fees: [DriverCustomServiceFeesDTO] = []) {
         self.title = title
         self.pageType = pageType
         self.trip = trip
         self.driver = driver
         self.canBid = canBid
         self.existingBid = existingBid
+        self.fees = fees
     }
 }
 
@@ -99,6 +101,7 @@ public struct DetailedTripContext: Content {
     public let destination: String
     public let distance: String?
     public let suggestedPrice: Double?
+    public let clientAmount: Double?
     public let status: String
     public let clientName: String?
     public let scheduledTime: String?
@@ -113,12 +116,13 @@ public struct DetailedTripContext: Content {
     // Payment method preference — "any" | "cash" | "online"
     public let paymentMethodPreference: String?
 
-    public init(id: String, pickup: String, destination: String, distance: String?, suggestedPrice: Double?, status: String, clientName: String?, scheduledTime: String?, numberOfPassengers: Int, specialInstructions: String?, isAirportTransfer: Bool? = nil, flightNumber: String? = nil, airlineName: String? = nil, terminalInfo: String? = nil, fixedPrice: Int? = nil, paymentMethodPreference: String? = nil) {
+    public init(id: String, pickup: String, destination: String, distance: String?, suggestedPrice: Double?, clientAmount: Double? = nil, status: String, clientName: String?, scheduledTime: String?, numberOfPassengers: Int, specialInstructions: String?, isAirportTransfer: Bool? = nil, flightNumber: String? = nil, airlineName: String? = nil, terminalInfo: String? = nil, fixedPrice: Int? = nil, paymentMethodPreference: String? = nil) {
         self.id = id
         self.pickup = pickup
         self.destination = destination
         self.distance = distance
         self.suggestedPrice = suggestedPrice
+        self.clientAmount = clientAmount
         self.status = status
         self.clientName = clientName
         self.scheduledTime = scheduledTime
